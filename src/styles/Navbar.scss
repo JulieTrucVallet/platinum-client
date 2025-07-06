@@ -1,0 +1,59 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #ccc;
+  background-color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+
+  .logo-navbar {
+    height: 40px;
+  }
+
+  .navbar-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+
+    li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #b49700; // Jaune doré
+      }
+    }
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .btn-login,
+    .btn-logout {
+      background-color: #b49700;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #8c7300;
+      }
+    }
+  }
+
+  .welcome-text {
+    margin-right: 1rem;
+    font-weight: bold;
+    color: #4b4b4b;
+  }
+}

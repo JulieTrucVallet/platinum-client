@@ -1,0 +1,86 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh; // augmenté pour centrer verticalement
+
+  .logo {
+    width: 460px; // logo plus grand
+    margin-bottom: 2rem;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 380px; // formulaire plus large
+    gap: 25px;    // plus d'espace entre les éléments
+
+    input {
+        border: none;
+        outline: none;
+        flex: 1;
+        padding: 8px 0;
+        background: transparent;
+        color: #000;
+
+        &::placeholder {
+            color: #aaa;
+        }
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #333;
+      width: 100%;
+      padding-bottom: 5px;
+
+      label {
+        margin-right: 10px;
+        font-size: 1.4em; // plus grand
+      }
+
+      input {
+        border: none;
+        outline: none;
+        flex: 1;
+        padding: 10px 0; // plus grand
+        font-size: 1.1em; // plus lisible
+        background: transparent;
+      }
+    }
+
+    .forgot {
+      font-size: 0.85em;
+      color: #444;
+      align-self: flex-start;
+    }
+
+    .login-btn {
+      background-color: #cca000;
+      color: black;
+      padding: 14px 36px; // plus grand
+      font-weight: bold;
+      font-size: 1.1em; // agrandi
+      border: none;
+      cursor: pointer;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #d9a600;
+      }
+    }
+
+    .signup {
+      font-size: 1em; // légèrement plus grand
+      a {
+        font-weight: bold;
+        text-decoration: underline;
+        color: #000;
+      }
+    }
+  }
+}

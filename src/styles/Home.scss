@@ -1,0 +1,124 @@
+.home-page {
+  background: #fff;
+  padding: 2rem;
+  font-family: 'Montserrat', sans-serif;
+
+  .home-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      span {
+        color: #b49700; // Jaune foncé (citron doré)
+      }
+    }
+
+    .filters {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+
+      input {
+        padding: 0.6rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        min-width: 200px;
+      }
+
+      .btn-filter,
+      .new-recipe-btn {
+        background-color: #b49700;
+        color: #fff;
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background-color: #8c7300;
+        }
+      }
+
+      .ingredient-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+
+        .tag {
+          background-color: #e0e0e0;
+          padding: 0.4rem 0.8rem;
+          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+
+          button {
+            background: none;
+            border: none;
+            color: red;
+            font-weight: bold;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .recipe-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+
+    .recipe-card {
+      background-color: #f7f7f7;
+      border-radius: 16px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 280px;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 1rem;
+
+        .recipe-title {
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
+
+        .prep-time {
+          font-size: 0.9rem;
+          color: #666;
+          margin-bottom: 1rem;
+        }
+
+        .see-recipe {
+          text-decoration: none;
+          color: #b49700;
+          font-weight: bold;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

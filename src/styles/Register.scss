@@ -1,0 +1,72 @@
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh; // même hauteur que login
+
+  .logo {
+    width: 460px; // identique à login
+    margin-bottom: 2rem;
+  }
+
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 380px; // même largeur que login
+    gap: 25px;
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #333;
+      width: 100%;
+      padding-bottom: 5px;
+
+      label {
+        margin-right: 10px;
+        font-size: 1.4em; // même taille icône que login
+      }
+
+      input {
+        border: none;
+        outline: none;
+        flex: 1;
+        padding: 10px 0;
+        font-size: 1.1em;
+        background: transparent;
+        color: #000;
+
+        &::placeholder {
+          color: #aaa;
+        }
+      }
+    }
+
+    .register-btn {
+      background-color: #cca000;
+      color: black;
+      padding: 14px 36px;
+      font-weight: bold;
+      font-size: 1.1em;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #d9a600;
+      }
+    }
+
+    .login-link {
+      font-size: 1em;
+      a {
+        font-weight: bold;
+        text-decoration: underline;
+        color: #000;
+      }
+    }
+  }
+}
