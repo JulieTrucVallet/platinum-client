@@ -46,7 +46,7 @@ function AddRecipe() {
         formData.append('ingredients', JSON.stringify(ingredients));
         formData.append('category', selectedCategory);
 
-        await axios.post('http://localhost:8010/api/recipes', formData, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/recipes`, formData, {
         headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'multipart/form-data',

@@ -57,7 +57,7 @@ function ShoppingList() {
     if (!newIngredient.name.trim()) return;
 
     try {
-      const res = await axios.post('http://localhost:8010/api/shopping-list', newIngredient, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/shopping-list`, newIngredient, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setIngredients(prev => [...prev, res.data]);

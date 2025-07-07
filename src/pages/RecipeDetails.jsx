@@ -22,7 +22,7 @@ function RecipeDetails() {
 
   const handleToggleFavorite = async () => {
     try {
-      await axios.post(`http://localhost:8010/api/recipes/${id}/favorite`, {}, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/recipes/${id}/favorite`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setIsFavorite(!isFavorite);
@@ -47,7 +47,7 @@ function RecipeDetails() {
 
   const handleAddToList = async (name, quantity) => {
     try {
-      await axios.post('http://localhost:8010/api/shopping-list', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/shopping-list`, {
         name,
         quantity: quantity || '',
       }, {
@@ -75,7 +75,7 @@ function RecipeDetails() {
     if (!newComment.trim()) return;
 
     try {
-        await axios.post(`http://localhost:8010/api/comments/${id}`, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/comments/${id}`, {
         content: newComment
         }, {
         headers: { Authorization: `Bearer ${token}` }
