@@ -69,7 +69,6 @@ function Home() {
               </span>
             ))}
           </div>
-          <Link to="/add" className="new-recipe-btn">Nouvelle Recette</Link>
         </div>
       </header>
 
@@ -78,7 +77,14 @@ function Home() {
       <div className="recipe-grid">
         {filteredRecipes.map((recipe) => (
           <div className="recipe-card" key={recipe._id}>
-            <img src={recipe.image} alt={recipe.title} />
+            {recipe.image ? (
+              <img
+                src={`http://localhost:8010${recipe.image}`}
+                alt={recipe.title}
+              />
+            ) : (
+              <div className="no-image"><span>📷</span></div>
+            )}
             <div className="card-content">
               <p className="recipe-title">{recipe.title}</p>
               <p className="prep-time">Préparation : {recipe.duration} min</p>

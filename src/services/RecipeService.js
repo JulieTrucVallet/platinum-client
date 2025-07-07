@@ -33,4 +33,10 @@ const RecipeService = {
   },
 };
 
+// 👉 Ajout hors de l'objet RecipeService
+export const getCategories = async () => {
+  const res = await axios.get('http://localhost:8010/api/categories');
+  return res.data;
+};
+
 export default RecipeService;

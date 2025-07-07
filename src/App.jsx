@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Route, Routes, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AddRecipe from "./pages/AddRecipe";
@@ -15,6 +16,22 @@ import ShoppingList from './pages/ShoppingList';
 
 function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    const body = document.body;
+
+    // Réinitialise toutes les classes custom
+    body.classList.remove('login-page', 'register-page');
+
+    // Ajoute dynamiquement selon la route
+    if (location.pathname === '/login') {
+      body.classList.add('login-page');
+    } else if (location.pathname === '/register') {
+      body.classList.add('register-page');
+    }
+  }, [location]);
+
+
   const hideNavRoutes = ['/login', '/register'];
 
   return (
@@ -28,7 +45,7 @@ function App() {
         <Route path="/recipes/:id" element={<RecipeDetails />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/recipes/:id/edit" element={<EditRecipe />} />
-        <Route path="/profil" element={<Profile />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/courses" element={<ShoppingList />} />
         <Route path="/courses/:id" element={<ShoppingList />} />
         <Route path="/admin" element={<AdminDashboard />} />

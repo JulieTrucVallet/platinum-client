@@ -2,17 +2,16 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import '../styles/ShoppingList.scss';
 
 function ShoppingList() {
   const { id } = useParams();
   const location = useLocation();
   const { user } = useAuth();
   const [ingredients, setIngredients] = useState([]);
-  const [checked, setChecked] = useState([]);
   const [newIngredient, setNewIngredient] = useState({ name: '', quantity: '' });
   const token = localStorage.getItem('token');
 
-  // 🔃 Charger les ingrédients de la liste de courses
   useEffect(() => {
     const fetchIngredients = async () => {
       try {
@@ -27,40 +26,41 @@ function ShoppingList() {
     fetchIngredients();
   }, [token]);
 
-  // ✅ Cocher un ingrédient
-  const toggleCheck = async (index) => {
-    try {
-      await axios.patch(`http://localhost:8010/api/shopping-list/${index}/check`, {}, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setChecked(prev => prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]);
-    } catch (err) {
-      console.error(err.response?.data?.message || 'Erreur de mise à jour');
-    }
-  };
+    const toggleCheck = async (id) => {
+        try {
+            await axios.patch(`http://localhost:8010/api/shopping-list/${id}/check`, {}, {
+            headers: { Authorization: `Bearer ${token}` }
+            });
 
-  // ❌ Supprimer un ingrédient
-  const deleteIngredient = async (index) => {
-    try {
-      await axios.delete(`http://localhost:8010/api/shopping-list/${index}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setIngredients(prev => prev.filter((_, i) => i !== index));
-      setChecked(prev => prev.filter(i => i !== index));
-    } catch (err) {
-      console.error(err.response?.data?.message || 'Erreur lors de la suppression');
-    }
-  };
+            setIngredients(prev =>
+            prev.map(item =>
+                item._id === id ? { ...item, checked: !item.checked } : item
+            )
+            );
+        } catch (err) {
+            console.error(err.response?.data?.message || 'Erreur de mise à jour');
+        }
+    };
 
-  // ➕ Ajouter un ingrédient
+    const deleteIngredient = async (id) => {
+    try {
+        await axios.delete(`http://localhost:8010/api/shopping-list/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+        });
+        setIngredients(prev => prev.filter(item => item._id !== id));
+    } catch (err) {
+        console.error(err.response?.data?.message || 'Erreur lors de la suppression');
+    }
+    };
+
   const addIngredient = async () => {
     if (!newIngredient.name.trim()) return;
 
     try {
-      await axios.post('http://localhost:8010/api/shopping-list', newIngredient, {
+      const res = await axios.post('http://localhost:8010/api/shopping-list', newIngredient, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setIngredients(prev => [...prev, newIngredient]);
+      setIngredients(prev => [...prev, res.data]);
       setNewIngredient({ name: '', quantity: '' });
     } catch (err) {
       console.error(err.response?.data?.message || 'Erreur lors de l’ajout');
@@ -68,44 +68,43 @@ function ShoppingList() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>🛒 Liste de courses</h2>
+    <div className="shopping-page">
+      <div className="notepad">
+        <h2>🛒 Liste de courses</h2>
 
-      {ingredients.length === 0 ? (
-        <p>Aucun ingrédient trouvé.</p>
-      ) : (
-        <ul>
-          {ingredients.map((item, index) => (
-            <li key={index}>
-              <label style={{ textDecoration: checked.includes(index) ? 'line-through' : 'none' }}>
+        {ingredients.length === 0 ? (
+          <p>Aucun ingrédient trouvé.</p>
+        ) : (
+          <ul className="ingredient-list">
+            {ingredients.map((item) => (
+                <li key={item._id} className={item.checked ? 'checked' : ''}>
+                <button className="delete-btn" onClick={() => deleteIngredient(item._id)}>🗑</button>
                 <input
-                  type="checkbox"
-                  checked={checked.includes(index)}
-                  onChange={() => toggleCheck(index)}
-                  style={{ marginRight: '0.5rem' }}
+                    type="checkbox"
+                    checked={item.checked}
+                    onChange={() => toggleCheck(item._id)}
                 />
-                {item.name} {item.quantity && `(${item.quantity})`}
-                <button onClick={() => deleteIngredient(index)}>🗑️</button>
-              </label>
-            </li>
-          ))}
-        </ul>
-      )}
+                <span>{item.name} {item.quantity && `- ${item.quantity}`}</span>
+                </li>
+            ))}
+          </ul>
+        )}
 
-      <div style={{ marginTop: '1rem' }}>
-        <input
-          type="text"
-          placeholder="Nouvel ingrédient"
-          value={newIngredient.name}
-          onChange={(e) => setNewIngredient({ ...newIngredient, name: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Quantité"
-          value={newIngredient.quantity}
-          onChange={(e) => setNewIngredient({ ...newIngredient, quantity: e.target.value })}
-        />
-        <button onClick={addIngredient}>➕ Ajouter</button>
+        <div className="actions">
+          <input
+            type="text"
+            placeholder="Nouvel ingrédient"
+            value={newIngredient.name}
+            onChange={(e) => setNewIngredient({ ...newIngredient, name: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Quantité"
+            value={newIngredient.quantity}
+            onChange={(e) => setNewIngredient({ ...newIngredient, quantity: e.target.value })}
+          />
+          <button className="add-btn" onClick={addIngredient}>➕ Ajouter</button>
+        </div>
       </div>
     </div>
   );

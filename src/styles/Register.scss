@@ -1,3 +1,11 @@
+body.login-page {
+  background-color: #fff;
+
+  &::after {
+    display: none;
+  }
+}
+
 .register-page {
   display: flex;
   flex-direction: column;

@@ -2,8 +2,25 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  position: relative;
 }
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 600px;
+  height: 600px;
+  background-image: url('../assets/lemon.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
+  pointer-events: none;
+}
+
 
 nav {
   background-color: #fff;

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/Favorites.scss';
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -19,27 +20,39 @@ function Favorites() {
       }
     };
 
+    const fetchCategories = async () => {
+        const res = await getCategories();
+        setCategories(res.data);
+    };
+
     fetchFavorites();
   }, []);
 
   if (error) return <p>{error}</p>;
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Mes recettes favorites</h2>
+    <div className="favorites-page">
+      <h2>Mes <span>favoris</span></h2>
       {favorites.length === 0 ? (
-        <p>Pas encore de favoris...</p>
+        <p style={{ textAlign: 'center' }}>Pas encore de favoris...</p>
       ) : (
-        favorites.map((r) => (
-          <div key={r._id} style={{ marginBottom: '1rem' }}>
-            <Link to={`/recipe/${r._id}`}>
-              <h3>{r.title}</h3>
-              {r.image && <img src={`http://localhost:8010${r.image}`} alt={r.title} style={{ maxWidth: '200px' }} />}
-              <p>{r.description}</p>
-              <p><strong>Auteur :</strong> {r.user?.username}</p>
-            </Link>
-          </div>
-        ))
+        <div className="recipe-grid">
+          {favorites.map((r) => (
+            <div className="recipe-card" key={r._id}>
+              {r.image ? (
+                <img src={`http://localhost:8010${r.image}`} alt={r.title} />
+              ) : (
+                <div className="no-image"><span>📷</span></div>
+              )}
+              <div className="card-content">
+                <p className="recipe-title">{r.title}</p>
+                <p className="prep-time">Préparation : {r.duration || '–'} min</p>
+                <p className="author">Auteur : {r.user?.username || 'Inconnu'}</p>
+                <Link to={`/recipes/${r._id}`} className="see-recipe">Voir la recette →</Link>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

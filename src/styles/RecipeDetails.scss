@@ -1,0 +1,253 @@
+.recipe-page-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  font-family: 'Inter', 'Arial', sans-serif;
+
+  .recipe-details-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+
+    .left-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      border-radius: 16px;
+      padding: 2rem;
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .recipe-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .infos {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        font-size: 1rem;
+        color: #333;
+
+        .duration {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-weight: bold;
+        }
+
+        .author {
+          font-style: italic;
+        }
+      }
+
+      .ingredients {
+        h4 {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+
+          &::before {
+            content: '🧾';
+          }
+        }
+
+        ul {
+          padding-left: 1rem;
+          li {
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            button {
+              margin-left: 1rem;
+            }
+          }
+        }
+      }
+
+      .steps {
+        h4 {
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+
+          &::before {
+            content: '🧑‍🍳';
+          }
+        }
+
+        p {
+          font-size: 1rem;
+          line-height: 1.8;
+          margin-bottom: 1.2rem;
+          white-space: pre-line;
+        }
+
+        ol, ul {
+          padding-left: 1.5rem;
+
+          li {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+          }
+        }
+      }
+    }
+
+    .right-section {
+      .video-section {
+        iframe {
+          border-radius: 8px;
+        }
+
+        h4 {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          &::before {
+            content: '🔗';
+          }
+        }
+      }
+
+      .comment-section {
+        margin-top: 2rem;
+        padding: 1rem;
+        background: #fffbea;
+        border-radius: 16px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+
+        h4 {
+          font-size: 1.2rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        textarea {
+          width: 100%;
+          border-radius: 12px;
+          padding: 0.8rem;
+          border: 1px solid #ccc;
+          resize: none;
+          margin-bottom: 0.5rem;
+          font-family: inherit;
+        }
+
+        button {
+          background-color: #406343;
+          color: white;
+          padding: 0.4rem 1.2rem;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+        }
+
+        .comment-item {
+          margin-top: 1rem;
+          padding: 0.8rem;
+          background: white;
+          border-radius: 10px;
+          position: relative;
+          font-size: 0.95rem;
+          box-shadow: 0 0 5px rgba(0,0,0,0.05);
+
+          strong {
+            color: #333;
+          }
+
+          .time {
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            font-size: 0.75rem;
+            color: #aaa;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .recipe-page-wrapper {
+    padding: 1rem;
+
+    .recipe-details-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+
+      .left-section,
+      .right-section {
+        width: 100%;
+      }
+
+      .left-section {
+        h2 {
+          font-size: 1.5rem;
+          text-align: center;
+        }
+
+        .recipe-image {
+          max-height: 250px;
+        }
+
+        .steps p {
+          font-size: 0.95rem;
+        }
+
+        .actions {
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
+
+          button {
+            width: 100%;
+            padding: 0.6rem;
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .right-section {
+        .video-section iframe {
+          height: 200px;
+        }
+
+        .comment-section {
+          padding: 1rem;
+
+          textarea {
+            padding: 0.6rem;
+            font-size: 0.95rem;
+          }
+
+          button {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+          }
+
+          .comment-item {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}

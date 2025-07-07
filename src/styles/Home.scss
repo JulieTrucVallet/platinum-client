@@ -1,5 +1,4 @@
 .home-page {
-  background: #fff;
   padding: 2rem;
   font-family: 'Montserrat', sans-serif;
 
@@ -72,16 +71,17 @@
 
   .recipe-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 2rem;
-    justify-content: center;
+    align-items: center;
 
     .recipe-card {
       background-color: #f7f7f7;
       border-radius: 16px;
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      width: 280px;
+      width: 90%;
+      max-width: 600px;
       transition: transform 0.3s;
 
       &:hover {
@@ -92,6 +92,17 @@
         width: 100%;
         height: 180px;
         object-fit: cover;
+      }
+
+      .no-image {
+        width: 100%;
+        height: 180px;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #999;
       }
 
       .card-content {
@@ -116,6 +127,81 @@
 
           &:hover {
             text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive mobile
+@media (max-width: 600px) {
+  body {
+    background-color: #9BAE85;
+    // Optional: to remove lemon background image on mobile
+    // &::after {
+    //   display: none;
+    // }
+  }
+
+  .home-page {
+    padding: 1rem;
+    background-color: #9BAE85;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .home-header {
+      h1 {
+        font-size: 1.6rem;
+        text-align: center;
+        line-height: 1.5rem;
+      }
+
+      .filters {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+
+        input,
+        .btn-filter {
+          width: 100%;
+          max-width: 350px;
+          font-size: 1rem;
+        }
+
+        .ingredient-tags {
+          justify-content: center;
+
+          .tag {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+
+    .recipe-grid {
+      .recipe-card {
+        width: 100%;
+        max-width: 100%;
+
+        img,
+        .no-image {
+          height: 150px;
+        }
+
+        .card-content {
+          .recipe-title {
+            font-size: 1rem;
+          }
+
+          .prep-time {
+            font-size: 0.85rem;
+          }
+
+          .see-recipe {
+            font-size: 0.9rem;
           }
         }
       }

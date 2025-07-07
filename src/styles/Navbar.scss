@@ -6,25 +6,44 @@
   border-bottom: 2px solid #ccc;
   background-color: #ffffff;
   font-family: 'Montserrat', sans-serif;
+  position: relative;
+  z-index: 1000;
 
   .logo-navbar {
-    height: 40px;
+    height: 70px;
   }
 
   .navbar-links {
     display: flex;
     list-style: none;
     gap: 2rem;
+    align-items: center;
 
-    li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.3s;
+    li {
+      position: relative;
+      padding: 0 1.2rem;
 
-      &:hover {
-        color: #b49700; // Jaune doré
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 25%;
+        height: 50%;
+        width: 1px;
+        background-color: #ccc;
+      }
+
+      a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #b49700;
+        }
       }
     }
   }
@@ -55,5 +74,68 @@
     margin-right: 1rem;
     font-weight: bold;
     color: #4b4b4b;
+  }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+      transition: 0.3s ease;
+    }
+
+    &.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    &.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    &.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  }
+
+  // Mobile styles
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+
+    .navbar-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #ffffff;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 1rem 0;
+
+      &.active {
+        display: flex;
+      }
+
+      li {
+        padding: 1rem 0;
+        text-align: center;
+
+        &:not(:last-child)::after {
+          display: none;
+        }
+      }
+    }
+
+    .navbar-right {
+      display: none;
+    }
+
+    .burger {
+      display: flex;
+    }
   }
 }
