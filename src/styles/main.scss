@@ -5,35 +5,67 @@ body {
   background-color: #ffffff;
   overflow-x: hidden;
   position: relative;
-}
 
-body::after {
-  content: '';
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 600px;
-  height: 600px;
-  background-image: url('../assets/lemon.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: -1;
-  pointer-events: none;
-}
+  // Lemon background image (bottom-right)
+  &::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background-image: url("../assets/lemon.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    pointer-events: none;
 
+    // Hide the lemon on small screens
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
 
 nav {
   background-color: #fff;
   padding: 1rem;
   border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between; // space between logo and links
+  align-items: center;
+  flex-wrap: wrap;
 
-  a {
-    margin-right: 1rem;
-    text-decoration: none;
+  .nav-logo {
+    font-weight: bold;
+    font-size: 1.2rem;
     color: #333;
+  }
 
-    &:hover {
-      text-decoration: underline;
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    a {
+      text-decoration: none;
+      color: #333;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Responsive behavior for burger menu
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .nav-links {
+      flex-direction: column;
+      width: 100%;
+      margin-top: 0.5rem;
     }
   }
 }

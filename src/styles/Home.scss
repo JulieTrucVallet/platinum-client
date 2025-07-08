@@ -1,7 +1,8 @@
 .home-page {
   padding: 2rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 
+  // Top section of the homepage with title and filters
   .home-header {
     text-align: center;
     margin-bottom: 2rem;
@@ -9,11 +10,14 @@
     h1 {
       font-size: 2.5rem;
       font-weight: bold;
+
+      // Highlighted span (yellow/citrus color)
       span {
-        color: #b49700; // Jaune foncé (citron doré)
+        color: #b49700;
       }
     }
 
+    // Search and filter section
     .filters {
       margin-top: 1rem;
       display: flex;
@@ -21,6 +25,7 @@
       justify-content: center;
       gap: 1rem;
 
+      // Search input
       input {
         padding: 0.6rem 1rem;
         border: 1px solid #ccc;
@@ -28,6 +33,7 @@
         min-width: 200px;
       }
 
+      // Filter and new recipe buttons
       .btn-filter,
       .new-recipe-btn {
         background-color: #b49700;
@@ -43,6 +49,7 @@
         }
       }
 
+      // Tags for selected ingredients
       .ingredient-tags {
         display: flex;
         flex-wrap: wrap;
@@ -57,6 +64,7 @@
           align-items: center;
           gap: 0.3rem;
 
+          // Remove tag button
           button {
             background: none;
             border: none;
@@ -69,6 +77,7 @@
     }
   }
 
+  // Recipe cards section
   .recipe-grid {
     display: flex;
     flex-direction: column;
@@ -88,12 +97,14 @@
         transform: translateY(-5px);
       }
 
+      // Recipe image
       img {
         width: 100%;
         height: 180px;
         object-fit: cover;
       }
 
+      // Placeholder if no image
       .no-image {
         width: 100%;
         height: 180px;
@@ -120,6 +131,7 @@
           margin-bottom: 1rem;
         }
 
+        // Link to see full recipe
         .see-recipe {
           text-decoration: none;
           color: #b49700;
@@ -134,19 +146,15 @@
   }
 }
 
-// Responsive mobile
+// Mobile responsive styling
 @media (max-width: 600px) {
   body {
-    background-color: #9BAE85;
-    // Optional: to remove lemon background image on mobile
-    // &::after {
-    //   display: none;
-    // }
+    background-color: #9bae85;
   }
 
   .home-page {
     padding: 1rem;
-    background-color: #9BAE85;
+    background-color: #9bae85;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

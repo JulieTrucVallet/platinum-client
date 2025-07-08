@@ -1,34 +1,36 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import RecipeService from '../services/RecipeService';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import RecipeService from "../services/RecipeService";
 
 const AdminDashboard = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [recipes, setRecipes] = useState([]); // list of recipes
+  const [loading, setLoading] = useState(true); // loading state
+  const navigate = useNavigate(); // for navigation
 
+  // Fetch all recipes from API
   const fetchRecipes = async () => {
     try {
       const data = await RecipeService.getAll();
       setRecipes(data);
     } catch (error) {
-      console.error('Erreur lors du chargement des recettes admin:', error);
+      console.error("Erreur lors du chargement des recettes admin:", error);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchRecipes();
+    fetchRecipes(); // fetch recipes on mount
   }, []);
 
+  // Delete recipe by ID
   const handleDelete = async (id) => {
-    if (window.confirm('Supprimer cette recette ?')) {
+    if (window.confirm("Supprimer cette recette ?")) {
       try {
         await RecipeService.deleteRecipe(id);
-        fetchRecipes();
+        fetchRecipes(); // refresh list after deletion
       } catch (error) {
-        console.error('Erreur suppression :', error);
+        console.error("Erreur suppression :", error);
       }
     }
   };
@@ -36,7 +38,10 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <h1>Interface Admin – Recettes</h1>
-      <button onClick={() => navigate('/admin/add-recipe')}>Ajouter une recette</button>
+      {/* Redirect to add recipe page */}
+      <button onClick={() => navigate("/admin/add-recipe")}>
+        Ajouter une recette
+      </button>
 
       {loading ? (
         <p>Chargement...</p>
@@ -57,13 +62,20 @@ const AdminDashboard = () => {
                 <td>{recipe.title}</td>
                 <td>
                   {recipe.ingredients.map((ing, i) => (
-                    <div key={i}>{ing.name} – {ing.quantity}</div>
+                    <div key={i}>
+                      {ing.name} – {ing.quantity}
+                    </div>
                   ))}
                 </td>
                 <td>{recipe.duration} min</td>
                 <td>{recipe.difficulty}</td>
                 <td>
-                  <button onClick={() => navigate(`/admin/edit-recipe/${recipe._id}`)}>✏️</button>
+                  {/* Edit and delete buttons */}
+                  <button
+                    onClick={() => navigate(`/admin/edit-recipe/${recipe._id}`)}
+                  >
+                    ✏️
+                  </button>
                   <button onClick={() => handleDelete(recipe._id)}>🗑️</button>
                 </td>
               </tr>

@@ -5,7 +5,7 @@
   padding: 1rem 2rem;
   border-bottom: 2px solid #ccc;
   background-color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   position: relative;
   z-index: 1000;
 
@@ -23,6 +23,7 @@
       position: relative;
       padding: 0 1.2rem;
 
+      // vertical separator between links (desktop only)
       &:not(:last-child)::after {
         content: "";
         position: absolute;
@@ -124,6 +125,7 @@
         padding: 1rem 0;
         text-align: center;
 
+        // remove separator on mobile
         &:not(:last-child)::after {
           display: none;
         }
@@ -132,6 +134,15 @@
 
     .navbar-right {
       display: none;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      margin-top: 1rem;
+      gap: 0.5rem;
+
+      &.active {
+        display: flex;
+      }
     }
 
     .burger {

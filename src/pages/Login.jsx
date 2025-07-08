@@ -1,32 +1,37 @@
-import axios from 'axios';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/platinum-logo.png';
-import { useAuth } from '../context/AuthContext';
-import '../styles/Login.scss';
+import axios from "axios";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/platinum-logo.png";
+import { useAuth } from "../context/AuthContext";
+import "../styles/Login.scss";
 
 function Login() {
-  const { login } = useAuth();
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [message, setMessage] = useState('');
+  const { login } = useAuth(); // context function to set user
+  const [formData, setFormData] = useState({ email: "", password: "" }); // login form state
+  const [message, setMessage] = useState(""); // success or error message
   const navigate = useNavigate();
 
+  // update form fields
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // handle login submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage('');
+    setMessage("");
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, formData);
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/login`,
+        formData
+      );
       const { token, user } = res.data;
-      login(user, token);
-      localStorage.setItem('token', token);
-      setMessage('Connexion réussie ! 🎉');
-      setTimeout(() => navigate('/'), 1500);
+      login(user, token); // set user in context
+      localStorage.setItem("token", token); // store token
+      setMessage("Connexion réussie ! 🎉");
+      setTimeout(() => navigate("/"), 1500); // redirect after success
     } catch (err) {
-      setMessage(err.response?.data?.message || 'Erreur de connexion');
+      setMessage(err.response?.data?.message || "Erreur de connexion");
     }
   };
 
@@ -35,6 +40,7 @@ function Login() {
       <img src={logo} alt="Logo Platinum" className="logo" />
 
       <form className="login-form" onSubmit={handleSubmit}>
+        {/* Email field */}
         <div className="input-group">
           <label htmlFor="email">
             <i className="fa fa-envelope" />
@@ -49,6 +55,7 @@ function Login() {
           />
         </div>
 
+        {/* Password field */}
         <div className="input-group">
           <label htmlFor="password">
             <i className="fa fa-lock" />
@@ -63,12 +70,18 @@ function Login() {
           />
         </div>
 
+        {/* Forgot password (static for now) */}
         <p className="forgot">Mot de passe oublié ?</p>
 
-        <button type="submit" className="login-btn">SE CONNECTER</button>
+        {/* Submit button */}
+        <button type="submit" className="login-btn">
+          SE CONNECTER
+        </button>
 
+        {/* Display message */}
         {message && <p className="message">{message}</p>}
 
+        {/* Link to register */}
         <p className="signup">
           Pas encore de compte ? <Link to="/register">S’INSCRIRE</Link>
         </p>

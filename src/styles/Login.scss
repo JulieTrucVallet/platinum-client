@@ -1,3 +1,4 @@
+// Applies white background and hides any ::after pseudo-element
 body.login-page {
   background-color: #fff;
 
@@ -11,10 +12,10 @@ body.login-page {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90vh; // augmenté pour centrer verticalement
+  height: 90vh;
 
   .logo {
-    width: 460px; // logo plus grand
+    width: 460px;
     margin-bottom: 2rem;
   }
 
@@ -22,22 +23,24 @@ body.login-page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 380px; // formulaire plus large
-    gap: 25px;    // plus d'espace entre les éléments
+    width: 380px;
+    gap: 25px;
 
+    // Input base style
     input {
-        border: none;
-        outline: none;
-        flex: 1;
-        padding: 8px 0;
-        background: transparent;
-        color: #000;
+      border: none;
+      outline: none;
+      flex: 1;
+      padding: 8px 0;
+      background: transparent;
+      color: #000;
 
-        &::placeholder {
-            color: #aaa;
-        }
+      &::placeholder {
+        color: #aaa;
+      }
     }
 
+    // Group icon + input field
     .input-group {
       display: flex;
       align-items: center;
@@ -47,31 +50,33 @@ body.login-page {
 
       label {
         margin-right: 10px;
-        font-size: 1.4em; // plus grand
+        font-size: 1.4em;
       }
 
       input {
         border: none;
         outline: none;
         flex: 1;
-        padding: 10px 0; // plus grand
-        font-size: 1.1em; // plus lisible
+        padding: 10px 0;
+        font-size: 1.1em;
         background: transparent;
       }
     }
 
+    // Forgot password text
     .forgot {
       font-size: 0.85em;
       color: #444;
       align-self: flex-start;
     }
 
+    // Login button style
     .login-btn {
       background-color: #cca000;
       color: black;
-      padding: 14px 36px; // plus grand
+      padding: 14px 36px;
       font-weight: bold;
-      font-size: 1.1em; // agrandi
+      font-size: 1.1em;
       border: none;
       cursor: pointer;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -82,8 +87,10 @@ body.login-page {
       }
     }
 
+    // Sign-up section
     .signup {
-      font-size: 1em; // légèrement plus grand
+      font-size: 1em;
+
       a {
         font-weight: bold;
         text-decoration: underline;

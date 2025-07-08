@@ -1,13 +1,15 @@
 .favorites-page {
   padding: 2rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 
+  // Page title
   h2 {
     text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 2rem;
 
+    // Highlighted word
     span {
       color: #b49700;
     }
@@ -15,7 +17,7 @@
 
   .recipe-grid {
     display: grid;
-    grid-template-columns: 1fr; // mobile = 1 colonne
+    grid-template-columns: 1fr;
     gap: 2rem;
     justify-items: center;
 
@@ -28,16 +30,19 @@
       max-width: 500px;
       transition: transform 0.3s;
 
+      // Lift effect on hover
       &:hover {
         transform: translateY(-5px);
       }
 
+      // Recipe image
       img {
         width: 100%;
         height: 180px;
         object-fit: cover;
       }
 
+      // Placeholder if no image
       .no-image {
         width: 100%;
         height: 180px;
@@ -70,6 +75,7 @@
           margin-bottom: 1rem;
         }
 
+        // Link to see the recipe details
         .see-recipe {
           text-decoration: none;
           color: #b49700;
@@ -83,13 +89,14 @@
     }
   }
 
-  // ✅ Responsive: 2 colonnes en tablette, 3 en grand écran
+  // Responsive: 2 columns on tablets
   @media (min-width: 600px) {
     .recipe-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
+  // Responsive: 3 columns on larger screens
   @media (min-width: 900px) {
     .recipe-grid {
       grid-template-columns: repeat(3, 1fr);

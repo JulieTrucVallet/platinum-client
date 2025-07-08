@@ -1,5 +1,5 @@
 .shopping-page {
-  background: url('/path/to/your/lemon-slice.png') no-repeat right bottom;
+  background: url("/path/to/your/lemon-slice.png") no-repeat right bottom;
   background-size: 35%;
   min-height: 100vh;
   padding: 1rem;
@@ -10,8 +10,8 @@
     margin: 0 auto;
     padding: 1.5rem;
     border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    font-family: 'Georgia', serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    font-family: "Georgia", serif;
     position: relative;
   }
 
@@ -36,7 +36,7 @@
       background: #f9f9f9;
       padding: 0.6rem 1rem;
       border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.05);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
       font-size: 0.95rem;
 
       &.checked {
@@ -90,7 +90,7 @@
     }
   }
 
-  // ➕ Pour les écrans moyens et larges
+  // Responsive styles mobile
   @media (min-width: 768px) {
     .actions {
       flex-direction: row;

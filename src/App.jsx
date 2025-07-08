@@ -1,18 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
+
+// Pages
 import AddRecipe from "./pages/AddRecipe";
-import AdminAddRecipe from './pages/AdminAddRecipe';
-import AdminDashboard from './pages/AdminDashboard';
-import AdminEditRecipe from './pages/AdminEditRecipe';
-import EditRecipe from './pages/EditRecipe';
-import Favorites from './pages/Favorites';
+import AdminAddRecipe from "./pages/AdminAddRecipe";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminEditRecipe from "./pages/AdminEditRecipe";
+import EditRecipe from "./pages/EditRecipe";
+import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
-import Login from './pages/Login';
+import Login from "./pages/Login";
 import Profile from "./pages/Profile.jsx";
 import RecipeDetails from "./pages/RecipeDetails";
 import Register from "./pages/Register";
-import ShoppingList from './pages/ShoppingList';
+import ShoppingList from "./pages/ShoppingList";
 
 function App() {
   const location = useLocation();
@@ -20,19 +22,18 @@ function App() {
   useEffect(() => {
     const body = document.body;
 
-    // Réinitialise toutes les classes custom
-    body.classList.remove('login-page', 'register-page');
+    // Reset all custom page classes
+    body.classList.remove("login-page", "register-page");
 
-    // Ajoute dynamiquement selon la route
-    if (location.pathname === '/login') {
-      body.classList.add('login-page');
-    } else if (location.pathname === '/register') {
-      body.classList.add('register-page');
+    // Add specific class depending on current route
+    if (location.pathname === "/login") {
+      body.classList.add("login-page");
+    } else if (location.pathname === "/register") {
+      body.classList.add("register-page");
     }
   }, [location]);
 
-
-  const hideNavRoutes = ['/login', '/register'];
+  const hideNavRoutes = ["/login", "/register"];
 
   return (
     <>

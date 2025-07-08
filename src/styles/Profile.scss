@@ -90,6 +90,10 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+
+      &:hover {
+        background-color: #3a5e0b;
+      }
     }
   }
 
@@ -114,7 +118,7 @@
     font-size: 0.95rem;
   }
 
-  // Responsive adjustments
+  // Responsive (mobile)
   @media (max-width: 480px) {
     padding: 1rem;
 
