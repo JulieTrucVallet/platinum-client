@@ -143,13 +143,8 @@ function RecipeDetails() {
 
           {/* Image */}
           {recipe.image && (
-            <img
-              src={`${import.meta.env.VITE_UPLOADS_URL}${recipe.image}`}
-              alt={recipe.title}
-              className="recipe-image"
-            />
+            <img src={recipe.image} alt={recipe.title} className="recipe-image" />
           )}
-
           <p>
             <strong>⏱️ Time:</strong> {recipe.duration} min
           </p>
