@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/platinum-logo-slogan.png";
 import { API_URL } from "../config";
 import "../styles/Home.scss";
 
@@ -56,8 +57,9 @@ function Home() {
     <div className="home-page">
       <header className="home-header">
         <h1>
-          Bienvenue sur <span>PLATINUM</span>
+          Bienvenue sur
         </h1>
+        <img src={logo} alt="Logo Platinum" className="logo-navbar" />
 
         {/* Filters section */}
         <div className="filters">
