@@ -56,10 +56,10 @@ function Home() {
   return (
     <div className="home-page">
       <header className="home-header">
-        <h1>
-          Bienvenue sur
-        </h1>
-        <img src={logo} alt="Logo Platinum" className="logo-navbar" />
+        <div className="home-title">
+          <h1>Bienvenue sur</h1>
+          <img src={logo} alt="Logo Platinum" className="home-logo" />
+        </div>
 
         {/* Filters section */}
         <div className="filters">
