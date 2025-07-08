@@ -37,16 +37,18 @@
     width: 100%;
     z-index: 999;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 2rem;
     padding: 1rem max(1rem, 5vw);
     background-color: #fff;
-    border-bottom: 1px solid #ccc;
+    border-bottom: none;
+
+    .search-input,
+    .right-filters {
+      flex: 1;
+    }
 
     .search-input {
-      flex: 1;
       max-width: 300px;
-      margin-right: 1rem;
       padding: 0.6rem 1rem;
       border: 1px solid #ccc;
       border-radius: 8px;
@@ -61,6 +63,7 @@
 
     .right-filters {
       display: flex;
+      justify-content: flex-end;
       align-items: center;
       gap: 0.5rem;
 
@@ -70,6 +73,7 @@
         border-radius: 8px;
         font-size: 1rem;
         height: 42px;
+        max-width: 300px;
 
         &:focus {
           outline: none;
