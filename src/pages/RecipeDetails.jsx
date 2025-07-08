@@ -144,7 +144,7 @@ function RecipeDetails() {
           {/* Image */}
           {recipe.image && (
             <img
-              src={`${API_URL}${recipe.image}`}
+              src={`${import.meta.env.VITE_UPLOADS_URL}${recipe.image}`}
               alt={recipe.title}
               className="recipe-image"
             />

@@ -42,7 +42,7 @@ function Favorites() {
           {favorites.map((r) => (
             <div className="recipe-card" key={r._id}>
               {r.image ? (
-                <img src={`${API_URL}${r.image}`} alt={r.title} />
+                <img src={`${import.meta.env.VITE_UPLOADS_URL}${r.image}`} alt={r.title} />
               ) : (
                 <div className="no-image">
                   <span>📷</span>

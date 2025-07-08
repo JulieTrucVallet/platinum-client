@@ -106,7 +106,7 @@ function Profile() {
               <img src={preview} alt="Preview" />
             ) : profile.image ? (
               <img
-                src={`${API_URL}${profile.image}`}
+                src={`${import.meta.env.VITE_UPLOADS_URL}${profile.image}`}
                 alt="Profile"
               />
             ) : (
