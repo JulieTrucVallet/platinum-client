@@ -1,13 +1,16 @@
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
   border-bottom: 2px solid #ccc;
-  background-color: #ffffff;
   font-family: "Montserrat", sans-serif;
-  position: relative;
-  z-index: 1000;
 
   .logo-navbar {
     height: 70px;
