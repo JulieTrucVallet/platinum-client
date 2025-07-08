@@ -9,17 +9,12 @@
 
     .home-title {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-
-      h1 {
-        margin: 0;
-      }
+      justify-content: center;
+      margin-bottom: 1.5rem;
 
       .home-logo {
-        width: 320px;
-        max-width: 80%;
+        width: 400px;
+        max-width: 90%;
         height: auto;
       }
     }

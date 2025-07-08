@@ -57,7 +57,6 @@ function Home() {
     <div className="home-page">
       <header className="home-header">
         <div className="home-title">
-          <h1>Bienvenue sur</h1>
           <img src={logo} alt="Logo Platinum" className="home-logo" />
         </div>
 
