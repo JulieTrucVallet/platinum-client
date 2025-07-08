@@ -61,22 +61,25 @@ function Home() {
         </div>
 
         {/* Filters section */}
-        <div className="filters">
+        <div className="sticky-filters">
           <input
             type="text"
             placeholder="Recherche"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
           />
-          <input
-            type="text"
-            placeholder="Ajouter un ingrédient"
-            value={ingredientInput}
-            onChange={(e) => setIngredientInput(e.target.value)}
-          />
-          <button onClick={handleAddIngredient} className="btn-filter">
-            Ajouter
-          </button>
+          <div className="right-filters">
+            <input
+              type="text"
+              placeholder="Ajouter un ingrédient"
+              value={ingredientInput}
+              onChange={(e) => setIngredientInput(e.target.value)}
+            />
+            <button onClick={handleAddIngredient} className="btn-filter">
+              Ajouter
+            </button>
+          </div>
 
           {/* Display added ingredient filters */}
           <div className="ingredient-tags">
