@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { API_URL } from "../config";
 import { useAuth } from "../context/AuthContext";
 import "../styles/ShoppingList.scss";
 
@@ -23,7 +24,7 @@ function ShoppingList() {
   useEffect(() => {
     const fetchIngredients = async () => {
       try {
-        const res = await axios.get("http://localhost:8010/api/shopping-list", {
+        const res = await axios.get(`${API_URL}/shopping-list`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setIngredients(res.data);
@@ -38,7 +39,7 @@ function ShoppingList() {
   const toggleCheck = async (id) => {
     try {
       await axios.patch(
-        `http://localhost:8010/api/shopping-list/${id}/check`,
+        `${API_URL}/shopping-list/${id}/check`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -58,7 +59,7 @@ function ShoppingList() {
   // Delete item from list
   const deleteIngredient = async (id) => {
     try {
-      await axios.delete(`http://localhost:8010/api/shopping-list/${id}`, {
+      await axios.delete(`${API_URL}/shopping-list/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setIngredients((prev) => prev.filter((item) => item._id !== id));
@@ -73,7 +74,7 @@ function ShoppingList() {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/shopping-list`,
+        `${API_URL}/shopping-list`,
         newIngredient,
         {
           headers: { Authorization: `Bearer ${token}` },

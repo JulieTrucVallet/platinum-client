@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_URL } from "../config";
 import "../styles/Favorites.scss";
 
 function Favorites() {
@@ -13,7 +14,7 @@ function Favorites() {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          "http://localhost:8010/api/recipes/user/favorites",
+          `${API_URL}/recipes/user/favorites`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -41,7 +42,7 @@ function Favorites() {
           {favorites.map((r) => (
             <div className="recipe-card" key={r._id}>
               {r.image ? (
-                <img src={`http://localhost:8010${r.image}`} alt={r.title} />
+                <img src={`${API_URL}${r.image}`} alt={r.title} />
               ) : (
                 <div className="no-image">
                   <span>📷</span>

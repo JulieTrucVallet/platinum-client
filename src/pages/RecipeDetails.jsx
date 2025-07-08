@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { API_URL } from "../config";
 import "../styles/RecipeDetails.scss";
 
 // Enable relative time (e.g., "2 days ago")
@@ -29,7 +30,7 @@ function RecipeDetails() {
   const handleToggleFavorite = async () => {
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/recipes/${id}/favorite`,
+        `${API_URL}/recipes/${id}/favorite`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -49,7 +50,7 @@ function RecipeDetails() {
     if (!confirm) return;
 
     try {
-      await axios.delete(`http://localhost:8010/api/recipes/${id}`, {
+      await axios.delete(`${API_URL}/recipes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate("/");
@@ -62,7 +63,7 @@ function RecipeDetails() {
   const handleAddToList = async (name, quantity) => {
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/shopping-list`,
+        `${API_URL}/shopping-list`,
         {
           name,
           quantity: quantity || "",
@@ -81,7 +82,7 @@ function RecipeDetails() {
   // Fetch all comments for the recipe
   const fetchComments = async () => {
     try {
-      const res = await axios.get(`http://localhost:8010/api/comments/${id}`);
+      const res = await axios.get(`${API_URL}/comments/${id}`);
       setComments(res.data);
     } catch (err) {
       console.error("Error loading comments:", err.message);
@@ -94,7 +95,7 @@ function RecipeDetails() {
 
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/comments/${id}`,
+        `${API_URL}/comments/${id}`,
         {
           content: newComment,
         },
@@ -114,7 +115,7 @@ function RecipeDetails() {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const res = await axios.get(`http://localhost:8010/api/recipes/${id}`);
+        const res = await axios.get(`${API_URL}/recipes/${id}`);
         setRecipe(res.data);
 
         if (token && res.data.favorites) {
@@ -143,7 +144,7 @@ function RecipeDetails() {
           {/* Image */}
           {recipe.image && (
             <img
-              src={`http://localhost:8010${recipe.image}`}
+              src={`${API_URL}${recipe.image}`}
               alt={recipe.title}
               className="recipe-image"
             />

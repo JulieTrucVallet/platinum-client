@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/platinum-logo.png";
+import { API_URL } from "../config";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Login.scss";
 
@@ -22,7 +23,7 @@ function Login() {
     setMessage("");
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/login`,
+        `${API_URL}/auth/login`,
         formData
       );
       const { token, user } = res.data;

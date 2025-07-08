@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { API_URL } from "../config";
 import "../styles/AddRecipe.scss";
 
 function EditRecipe() {
@@ -25,14 +26,14 @@ function EditRecipe() {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const res = await axios.get(`http://localhost:8010/api/recipes/${id}`);
+        const res = await axios.get(`${API_URL}/recipes/${id}`);
         setTitle(res.data.title);
         setDescription(res.data.steps || res.data.description || "");
         setDuration(res.data.duration || "");
         setIngredients(res.data.ingredients || []);
         setLink(res.data.link || "");
         if (res.data.image) {
-          setPreview(`http://localhost:8010${res.data.image}`);
+          setPreview(`${API_URL}${res.data.image}`);
         }
       } catch (err) {
         setMessage(err.response?.data?.message || "Erreur lors du chargement");
@@ -63,7 +64,7 @@ function EditRecipe() {
       );
       if (imageFile) formData.append("image", imageFile);
 
-      await axios.put(`http://localhost:8010/api/recipes/${id}`, formData, {
+      await axios.put(`${API_URL}/recipes/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_URL } from "../config";
 import "../styles/Home.scss";
 
 function Home() {
@@ -14,7 +15,7 @@ function Home() {
     // fetch all recipes from the API
     const fetchRecipes = async () => {
       try {
-        const res = await axios.get("http://localhost:8010/api/recipes");
+        const res = await axios.get(`${API_URL}/recipes`);
         setRecipes(res.data);
       } catch (err) {
         setError("Erreur lors du chargement des recettes");
@@ -97,7 +98,7 @@ function Home() {
           <div className="recipe-card" key={recipe._id}>
             {recipe.image ? (
               <img
-                src={`http://localhost:8010${recipe.image}`}
+                src={`${API_URL}${recipe.image}`}
                 alt={recipe.title}
               />
             ) : (

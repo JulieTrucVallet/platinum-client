@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import { API_URL } from "../config";
 
 // Create authentication context
 const AuthContext = createContext();
@@ -26,7 +27,7 @@ export function AuthProvider({ children }) {
     if (!token) return;
 
     try {
-      const res = await axios.get("http://localhost:8010/api/auth/me", {
+      const res = await axios.get(`${API_URL}/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
       });

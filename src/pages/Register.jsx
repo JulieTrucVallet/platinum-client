@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/platinum-logo.png";
+import { API_URL } from "../config";
 import "../styles/Register.scss";
 
 function Register() {
@@ -26,7 +27,7 @@ function Register() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/register`,
+        `${API_URL}/auth/register`,
         formData
       );
       alert("Registration successful!");

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { API_URL } from "../config";
 import "../styles/Profile.scss";
 
 function Profile() {
@@ -17,7 +18,7 @@ function Profile() {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:8010/api/users/profile", {
+        const res = await axios.get(`${API_URL}/users/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProfile(res.data);
@@ -40,7 +41,7 @@ function Profile() {
       if (image) formData.append("image", image);
 
       const res = await axios.put(
-        "http://localhost:8010/api/users/profile",
+        `${API_URL}/users/profile`,
         formData,
         {
           headers: {
@@ -73,7 +74,7 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        "http://localhost:8010/api/users/profile/image",
+        `${API_URL}/users/profile/image`,
         formData,
         {
           headers: {
@@ -105,7 +106,7 @@ function Profile() {
               <img src={preview} alt="Preview" />
             ) : profile.image ? (
               <img
-                src={`http://localhost:8010${profile.image}`}
+                src={`${API_URL}${profile.image}`}
                 alt="Profile"
               />
             ) : (

@@ -1,7 +1,5 @@
 import axios from "axios";
-
-// Base API URL for admin recipe endpoints
-const API_URL = "http://localhost:8010/api/admin/recipes";
+import { API_URL } from "../config";
 
 // Helper to get token from local storage
 const getToken = () => {
@@ -19,31 +17,31 @@ const headers = () => ({
 const RecipeService = {
   // Get all recipes (admin only)
   getAll: async () => {
-    const res = await axios.get(API_URL, headers());
+    const res = await axios.get(`${API_URL}/admin/recipes`, headers());
     return res.data;
   },
 
   // Delete a recipe by ID (admin only)
   deleteRecipe: async (id) => {
-    await axios.delete(`${API_URL}/${id}`, headers());
+    await axios.delete(`${API_URL}/admin/recipes/${id}`, headers());
   },
 
   // Create a new recipe (admin only)
   createRecipe: async (recipeData) => {
-    const res = await axios.post(API_URL, recipeData, headers());
+    const res = await axios.post(`${API_URL}/admin/recipes`, recipeData, headers());
     return res.data;
   },
 
   // Update an existing recipe (admin only)
   updateRecipe: async (id, updatedData) => {
-    const res = await axios.put(`${API_URL}/${id}`, updatedData, headers());
+    const res = await axios.put(`${API_URL}/admin/recipes/${id}`, updatedData, headers());
     return res.data;
   },
 };
 
 // Fetch all recipe categories (public)
 export const getCategories = async () => {
-  const res = await axios.get("http://localhost:8010/api/categories");
+  const res = await axios.get(`${API_URL}/categories`);
   return res.data;
 };
 
