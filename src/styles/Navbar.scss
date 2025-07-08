@@ -23,6 +23,7 @@
     list-style: none;
     gap: 2rem;
     align-items: center;
+    padding: 0.6rem 0;
 
     li {
       position: relative;
@@ -40,6 +41,8 @@
       }
 
       a {
+        display: inline-block;
+        line-height: 1.4;
         text-decoration: none;
         color: #333;
         font-weight: 600;
