@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 import { useAuth } from "../context/AuthContext";
 import { getCategories } from "../services/RecipeService";
 import "../styles/AddRecipe.scss";
@@ -48,7 +49,7 @@ function AddRecipe() {
       formData.append("ingredients", JSON.stringify(ingredients));
       formData.append("category", selectedCategory);
 
-      await axios.post(`${import.meta.env.VITE_API_URL}/recipes`, formData, {
+      await axios.post(`${API_URL}/recipes`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -145,6 +146,8 @@ function AddRecipe() {
             required
           >
             <option value="">-- Sélectionner une catégorie --</option>
+            <option value="plat">Plat</option>
+            <option value="dessert">Dessert</option>
             {categories.map((cat) => (
               <option key={cat._id} value={cat._id}>
                 {cat.name}

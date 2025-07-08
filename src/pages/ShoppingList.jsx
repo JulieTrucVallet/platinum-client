@@ -1,16 +1,10 @@
 // Import libraries and hooks
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
 import { API_URL } from "../config";
-import { useAuth } from "../context/AuthContext";
 import "../styles/ShoppingList.scss";
 
 function ShoppingList() {
-  // Get user from context and route params
-  const { id } = useParams();
-  const location = useLocation();
-  const { user } = useAuth();
 
   // Local states
   const [ingredients, setIngredients] = useState([]);
