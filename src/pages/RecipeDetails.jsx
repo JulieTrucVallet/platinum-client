@@ -168,7 +168,7 @@ function RecipeDetails() {
               <li key={i}>
                 {ing?.name} {ing?.quantity && `(${ing.quantity})`}
                 <button onClick={() => handleAddToList(ing.name, ing.quantity)}>
-                  ➕ Add to list
+                  ➕ Ajouter à la liste de courses
                 </button>
               </li>
             ))}
@@ -185,15 +185,15 @@ function RecipeDetails() {
           {/* Actions */}
           <div className="actions">
             <button onClick={handleToggleFavorite}>
-              {isFavorite ? "💔 Remove from favorites" : "❤️ Add to favorites"}
+              {isFavorite ? "💔 Supprimer des Favoris" : "❤️ Ajouter au Favoris"}
             </button>
 
             {recipe.user?._id === userId && (
               <>
                 <button onClick={() => navigate(`/recipes/${id}/edit`)}>
-                  ✏️ Edit
+                  ✏️ Modifier
                 </button>
-                <button onClick={handleDelete}>🗑️ Delete</button>
+                <button onClick={handleDelete}>🗑️ Supprimer</button>
               </>
             )}
           </div>
@@ -203,7 +203,7 @@ function RecipeDetails() {
         <div className="right-section">
           {/* Video or link */}
           <div className="video-section">
-            <h4>Recipe link</h4>
+            <h4>Lien</h4>
             {recipe.link ? (
               recipe.link.includes("youtube") ? (
                 <iframe
@@ -219,13 +219,13 @@ function RecipeDetails() {
                 </a>
               )
             ) : (
-              <p>No link provided.</p>
+              <p>Pas de liens</p>
             )}
           </div>
 
           {/* Comments */}
           <div className="comment-section" style={{ marginTop: "2rem" }}>
-            <h4>💬 Comments</h4>
+            <h4>💬 Commentaires</h4>
 
             {/* Add comment */}
             {token && (
@@ -234,21 +234,21 @@ function RecipeDetails() {
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                   rows={3}
-                  placeholder="Leave a comment..."
+                  placeholder="Laisser un commentaire..."
                   style={{ width: "100%", padding: "0.5rem" }}
                 />
                 <button
                   onClick={handleAddComment}
                   style={{ marginTop: "0.5rem" }}
                 >
-                  Post
+                  Poster
                 </button>
               </div>
             )}
 
             {/* Show comments */}
             {comments.length === 0 ? (
-              <p>No comments yet.</p>
+              <p>Pas encore de Commentaires</p>
             ) : (
               comments.map((c) => (
                 <div
