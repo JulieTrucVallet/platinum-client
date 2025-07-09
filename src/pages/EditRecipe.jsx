@@ -51,6 +51,7 @@ function EditRecipe() {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
+      formData.append("steps", description);
       formData.append("duration", duration);
       formData.append("link", link);
       formData.append(
