@@ -102,7 +102,11 @@ function Home() {
           <div className="recipe-card" key={recipe._id}>
             {recipe.image ? (
               <img
-                src={`${import.meta.env.VITE_UPLOADS_URL}/${recipe.image?.replace(/^\/+/, "")}`}
+                src={
+                  recipe.image.startsWith("http")
+                    ? recipe.image
+                    : `${import.meta.env.VITE_UPLOADS_URL}${recipe.image}`
+                }
                 alt={recipe.title}
               />
             ) : (
