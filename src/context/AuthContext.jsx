@@ -29,7 +29,6 @@ export function AuthProvider({ children }) {
     try {
       const res = await axios.get(`${API_URL}/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
-        withCredentials: true,
       });
       setUser(res.data);
     } catch (err) {
