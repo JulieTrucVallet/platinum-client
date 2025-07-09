@@ -84,11 +84,11 @@ function ShoppingList() {
   return (
     <div className="shopping-page">
       <div className="notepad">
-        <h2>🛒 Shopping List</h2>
+        <h2>🛒 Liste des courses</h2>
 
         {/* Ingredient list */}
         {ingredients.length === 0 ? (
-          <p>No ingredients found.</p>
+          <p>Pas d'indrédient trouvé</p>
         ) : (
           <ul className="ingredient-list">
             {ingredients.map((item) => (
@@ -131,7 +131,7 @@ function ShoppingList() {
             }
           />
           <button className="add-btn" onClick={addIngredient}>
-            ➕ Add
+            ➕ Ajouter
           </button>
         </div>
       </div>
