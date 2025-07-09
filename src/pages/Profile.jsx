@@ -105,7 +105,10 @@ function Profile() {
             {preview ? (
               <img src={preview} alt="Preview" />
             ) : profile.image ? (
-              <img src={profile.image} alt="Profile" />
+              <img
+                src={`${import.meta.env.VITE_UPLOADS_URL}${profile.image}`}
+                alt="Profile"
+              />
             ) : (
               <div className="avatar-placeholder">
                 {profile.username.charAt(0).toUpperCase()}

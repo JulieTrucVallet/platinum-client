@@ -101,7 +101,10 @@ function Home() {
         {filteredRecipes.map((recipe) => (
           <div className="recipe-card" key={recipe._id}>
             {recipe.image ? (
-              <img src={recipe.image} alt={recipe.title} />
+              <img
+                src={`${import.meta.env.VITE_UPLOADS_URL}/${recipe.image?.replace(/^\/+/, "")}`}
+                alt={recipe.title}
+              />
             ) : (
               <div className="no-image">
                 <span>📷</span>

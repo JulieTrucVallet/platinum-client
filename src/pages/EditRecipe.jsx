@@ -33,7 +33,7 @@ function EditRecipe() {
         setIngredients(res.data.ingredients || []);
         setLink(res.data.link || "");
         if (res.data.image) {
-          setPreview(res.data.image);
+          setPreview(`${import.meta.env.VITE_UPLOADS_URL}${res.data.image}`);
         }
       } catch (err) {
         setMessage(err.response?.data?.message || "Erreur lors du chargement");
@@ -51,7 +51,6 @@ function EditRecipe() {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
-      formData.append("steps", description);
       formData.append("duration", duration);
       formData.append("link", link);
       formData.append(
