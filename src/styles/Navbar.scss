@@ -31,7 +31,6 @@
       position: relative;
       padding: 0 $space-md;
 
-      // Séparateur vertical (desktop)
       &:not(:last-child)::after {
         content: "";
         position: absolute;
@@ -42,7 +41,8 @@
         background-color: $color-border;
       }
 
-      a {
+      a,
+      button {
         display: inline-block;
         line-height: 1.4;
         text-decoration: none;
@@ -50,7 +50,10 @@
         font-weight: 600;
         font-size: 1.1rem;
         letter-spacing: 0.05em;
-        transition: color 0.3s;
+        transition: color 0.3s, background-color 0.3s;
+        background: none;
+        border: none;
+        cursor: pointer;
 
         &:hover {
           color: $color-primary;
@@ -126,6 +129,7 @@
       top: 100%;
       left: 0;
       padding: $space-md 0;
+      border-top: 1px solid $color-border;
 
       &.active {
         display: flex;
@@ -138,20 +142,17 @@
         &:not(:last-child)::after {
           display: none;
         }
+
+        a,
+        button {
+          width: 100%;
+          padding: $space-sm 0;
+        }
       }
     }
 
     .navbar-right {
       display: none;
-      flex-direction: column;
-      width: 100%;
-      align-items: center;
-      margin-top: $space-md;
-      gap: $space-sm;
-
-      &.active {
-        display: flex;
-      }
     }
 
     .burger {
