@@ -20,6 +20,9 @@ export default function EditRecipe() {
       setSubmitting(true);
       await updateRecipe(id, formData);
       navigate(`/recipes/${id}`);
+    } catch (e) {
+      alert(e?.response?.data?.message || "Erreur lors de la mise à jour");
+      console.error(e);
     } finally {
       setSubmitting(false);
     }

@@ -50,7 +50,7 @@ export default function AdminEditRecipe() {
       <section>
         <RecipeForm 
           onSubmit={handleSubmit} 
-          initialData={initialData} 
+          initialValues={initialData}
           submitLabel="Mettre à jour"
         />
       </section>
