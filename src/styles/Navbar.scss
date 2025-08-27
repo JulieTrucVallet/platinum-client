@@ -1,3 +1,5 @@
+@import "./variables";
+
 .navbar {
   position: fixed;
   top: 0;
@@ -6,12 +8,12 @@
   max-width: 100%;
   box-sizing: border-box;
   z-index: 1000;
-  background-color: #ffffff;
+  background-color: $color-bg;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem max(1rem, 5vw);
-  border-bottom: 2px solid #ccc;
+  padding: $space-md max($space-md, 5vw);
+  border-bottom: 2px solid $color-border;
   font-family: "Montserrat", sans-serif;
 
   .logo-navbar {
@@ -21,15 +23,15 @@
   .navbar-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: $space-lg;
     align-items: center;
     padding: 0.6rem 0;
 
     li {
       position: relative;
-      padding: 0 1.2rem;
+      padding: 0 $space-md;
 
-      // vertical separator between links (desktop only)
+      // Séparateur vertical (desktop)
       &:not(:last-child)::after {
         content: "";
         position: absolute;
@@ -37,21 +39,21 @@
         top: 25%;
         height: 50%;
         width: 1px;
-        background-color: #ccc;
+        background-color: $color-border;
       }
 
       a {
         display: inline-block;
         line-height: 1.4;
         text-decoration: none;
-        color: #333;
+        color: $color-text;
         font-weight: 600;
         font-size: 1.1rem;
         letter-spacing: 0.05em;
         transition: color 0.3s;
 
         &:hover {
-          color: #b49700;
+          color: $color-primary;
         }
       }
     }
@@ -60,29 +62,29 @@
   .navbar-right {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: $space-md;
 
     .btn-login,
     .btn-logout {
-      background-color: #b49700;
+      background-color: $color-primary;
       color: white;
       padding: 0.5rem 1rem;
       border: none;
-      border-radius: 6px;
+      border-radius: $radius-md;
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s;
 
       &:hover {
-        background-color: #8c7300;
+        background-color: darken($color-primary, 10%);
       }
     }
   }
 
   .welcome-text {
-    margin-right: 1rem;
+    margin-right: $space-md;
     font-weight: bold;
-    color: #4b4b4b;
+    color: $color-text-light;
   }
 
   .burger {
@@ -94,7 +96,7 @@
     .bar {
       width: 25px;
       height: 3px;
-      background-color: #333;
+      background-color: $color-text;
       transition: 0.3s ease;
     }
 
@@ -111,7 +113,7 @@
     }
   }
 
-  // Mobile styles
+  // 📱 Mobile
   @media (max-width: 600px) {
     flex-wrap: wrap;
 
@@ -119,21 +121,20 @@
       display: none;
       flex-direction: column;
       width: 100%;
-      background-color: #ffffff;
+      background-color: $color-bg;
       position: absolute;
       top: 100%;
       left: 0;
-      padding: 1rem 0;
+      padding: $space-md 0;
 
       &.active {
         display: flex;
       }
 
       li {
-        padding: 1rem 0;
+        padding: $space-md 0;
         text-align: center;
 
-        // remove separator on mobile
         &:not(:last-child)::after {
           display: none;
         }
@@ -145,8 +146,8 @@
       flex-direction: column;
       width: 100%;
       align-items: center;
-      margin-top: 1rem;
-      gap: 0.5rem;
+      margin-top: $space-md;
+      gap: $space-sm;
 
       &.active {
         display: flex;

@@ -1,0 +1,52 @@
+// 🎨 Couleurs globales
+$color-primary: #1e90ff;   // bleu principal (boutons, liens)
+$color-accent: #ffc107;    // accent (hover, highlights)
+$color-bg: #ffffff;        // fond clair principal
+$color-bg-alt: #fafafa;    // fond secondaire (sections)
+$color-text: #333;         // texte par défaut
+$color-text-light: #666;   // texte secondaire
+$color-border: #ddd;       // bordures légères
+$color-error: #e74c3c;     // erreurs
+$color-success: #2ecc71;   // succès
+
+// 🔠 Typographie
+$font-main: "Arial", sans-serif;
+$font-size-base: 16px;
+$font-size-title: 24px;
+$font-size-small: 14px;
+
+// 📏 Espacements
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 40px;
+
+// 🔳 Formes
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+
+// 🖼️ Ombres
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 3px 6px rgba(0, 0, 0, 0.15);
+
+// 🟦 Composants de base
+.btn {
+  border-radius: $radius-md;
+  padding: $space-sm $space-md;
+  background-color: $color-primary;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: $font-size-base;
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
+
+  &:disabled {
+    background-color: lighten($color-primary, 20%);
+    cursor: not-allowed;
+  }
+}

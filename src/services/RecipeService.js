@@ -1,48 +1,13 @@
-import axios from "axios";
-import { API_URL } from "../config";
+import http from "./http";
 
-// Helper to get token from local storage
-const getToken = () => {
-  return localStorage.getItem("token");
-};
+export const getRecipes = () => http.get("/recipes").then(r => r.data);
+export const getRecipeById = (id) => http.get(`/recipes/${id}`).then(r => r.data);
+export const createRecipe = (formData) => http.post("/recipes", formData).then(r => r.data);
+export const updateRecipe = (id, formData) => http.put(`/recipes/${id}`, formData).then(r => r.data);
+export const deleteRecipe = (id) => http.delete(`/recipes/${id}`).then(r => r.data);
 
-// Configure request headers with authorization
-const headers = () => ({
-  headers: {
-    Authorization: `Bearer ${getToken()}`,
-  },
-});
+export const toggleFavorite = (id) => http.post(`/recipes/${id}/favorite`).then(r => r.data);
+export const getFavorites = () => http.get("/recipes/user/favorites").then(r => r.data);
 
-// Object grouping all recipe-related API actions for the admin
-const RecipeService = {
-  // Get all recipes (admin only)
-  getAll: async () => {
-    const res = await axios.get(`${API_URL}/admin/recipes`, headers());
-    return res.data;
-  },
-
-  // Delete a recipe by ID (admin only)
-  deleteRecipe: async (id) => {
-    await axios.delete(`${API_URL}/admin/recipes/${id}`, headers());
-  },
-
-  // Create a new recipe (admin only)
-  createRecipe: async (recipeData) => {
-    const res = await axios.post(`${API_URL}/admin/recipes`, recipeData, headers());
-    return res.data;
-  },
-
-  // Update an existing recipe (admin only)
-  updateRecipe: async (id, updatedData) => {
-    const res = await axios.put(`${API_URL}/admin/recipes/${id}`, updatedData, headers());
-    return res.data;
-  },
-};
-
-// Fetch all recipe categories (public)
-export const getCategories = async () => {
-  const res = await axios.get(`${API_URL}/categories`);
-  return res.data;
-};
-
-export default RecipeService;
+// si tu as les catégories :
+export const getCategories = () => http.get("/categories").then(r => r.data);

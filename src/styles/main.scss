@@ -1,17 +1,21 @@
+@import "./variables";
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: $font-main;
+  font-size: $font-size-base;
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
+  background-color: $color-bg;
+  color: $color-text;
   overflow-x: hidden;
   position: relative;
   padding-top: 90px;
 
-  // Lemon background image (bottom-right)
+  // 🍋 Lemon background (bottom-right)
   &::after {
     content: "";
     position: fixed;
@@ -25,7 +29,6 @@ body {
     z-index: -1;
     pointer-events: none;
 
-    // Hide the lemon on small screens
     @media (max-width: 768px) {
       display: none;
     }
@@ -33,9 +36,9 @@ body {
 }
 
 nav {
-  background-color: #fff;
-  padding: 1rem;
-  border-bottom: 1px solid #ddd;
+  background-color: $color-bg;
+  padding: $space-md;
+  border-bottom: 1px solid $color-border;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,25 +47,26 @@ nav {
   .nav-logo {
     font-weight: bold;
     font-size: 1.2rem;
-    color: #333;
+    color: $color-text;
   }
 
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: $space-md;
 
     a {
       text-decoration: none;
-      color: #333;
+      color: $color-text;
 
       &:hover {
         text-decoration: underline;
+        color: $color-primary; // petit accent au hover
       }
     }
   }
 
-  // Responsive behavior for burger menu
+  // Responsive (burger menu style)
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: flex-start;
@@ -70,7 +74,7 @@ nav {
     .nav-links {
       flex-direction: column;
       width: 100%;
-      margin-top: 0.5rem;
+      margin-top: $space-sm;
     }
   }
 }

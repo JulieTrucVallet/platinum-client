@@ -1,61 +1,65 @@
+@import "./variables";
+
 .recipe-page-wrapper {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 1.5rem;
-  font-family: "Inter", "Arial", sans-serif;
+  padding: 0 $space-md;
+  font-family: "Inter", $font-main;
 
   .recipe-details-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 2rem;
+    gap: $space-lg;
 
     .left-section {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-      background-color: rgba(255, 255, 255, 0.85);
+      gap: $space-lg;
+      background-color: rgba($color-bg, 0.85);
       backdrop-filter: blur(4px);
-      border-radius: 16px;
-      padding: 2rem;
+      border-radius: $radius-lg;
+      padding: $space-lg;
 
       h2 {
         font-size: 2rem;
-        margin-bottom: 1rem;
+        margin-bottom: $space-md;
+        color: $color-primary;
       }
 
       .recipe-image {
         width: 100%;
         max-height: 400px;
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: $radius-md;
       }
 
       .infos {
         display: flex;
         flex-direction: column;
-        gap: 0.4rem;
+        gap: $space-xs;
         font-size: 1rem;
-        color: #333;
+        color: $color-text;
 
         .duration {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: $space-sm;
           font-weight: bold;
         }
 
         .author {
           font-style: italic;
+          color: $color-text-light;
         }
       }
 
       .ingredients {
         h4 {
           font-size: 1.2rem;
-          margin-bottom: 0.5rem;
+          margin-bottom: $space-sm;
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: $space-sm;
 
           &::before {
             content: "🧾";
@@ -63,16 +67,19 @@
         }
 
         ul {
-          padding-left: 1rem;
+          padding-left: $space-md;
 
           li {
-            margin-bottom: 0.4rem;
+            margin-bottom: $space-xs;
             display: flex;
             align-items: center;
             justify-content: space-between;
 
             button {
-              margin-left: 1rem;
+              margin-left: $space-sm;
+              @extend .btn;
+              background-color: $color-accent;
+              color: $color-text;
             }
           }
         }
@@ -81,10 +88,10 @@
       .steps {
         h4 {
           font-size: 1.2rem;
-          margin-bottom: 1rem;
+          margin-bottom: $space-md;
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: $space-sm;
 
           &::before {
             content: "🧑‍🍳";
@@ -94,18 +101,19 @@
         p {
           font-size: 1rem;
           line-height: 1.8;
-          margin-bottom: 1.2rem;
+          margin-bottom: $space-md;
           white-space: pre-line;
+          color: $color-text;
         }
 
         ol,
         ul {
-          padding-left: 1.5rem;
+          padding-left: $space-lg;
 
           li {
             font-size: 1rem;
             line-height: 1.8;
-            margin-bottom: 1rem;
+            margin-bottom: $space-md;
           }
         }
       }
@@ -114,13 +122,13 @@
     .right-section {
       .video-section {
         iframe {
-          border-radius: 8px;
+          border-radius: $radius-md;
         }
 
         h4 {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: $space-sm;
 
           &::before {
             content: "🔗";
@@ -129,57 +137,55 @@
       }
 
       .comment-section {
-        margin-top: 2rem;
-        padding: 1rem;
-        background: #fffbea;
-        border-radius: 16px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        margin-top: $space-lg;
+        padding: $space-md;
+        background: lighten($color-accent, 35%);
+        border-radius: $radius-lg;
+        box-shadow: $shadow-sm;
 
         h4 {
           font-size: 1.2rem;
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: $space-sm;
         }
 
         textarea {
           width: 100%;
-          border-radius: 12px;
-          padding: 0.8rem;
-          border: 1px solid #ccc;
+          border-radius: $radius-lg;
+          padding: $space-md;
+          border: 1px solid $color-border;
           resize: none;
-          margin-bottom: 0.5rem;
+          margin-bottom: $space-sm;
           font-family: inherit;
         }
 
         button {
-          background-color: #406343;
+          @extend .btn;
+          background-color: $color-primary;
           color: white;
-          padding: 0.4rem 1.2rem;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
+          padding: $space-sm $space-md;
         }
 
         .comment-item {
-          margin-top: 1rem;
-          padding: 0.8rem;
-          background: white;
-          border-radius: 10px;
+          margin-top: $space-md;
+          padding: $space-md;
+          background: $color-bg;
+          border-radius: $radius-md;
           position: relative;
           font-size: 0.95rem;
-          box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+          box-shadow: $shadow-sm;
 
           strong {
-            color: #333;
+            color: $color-text;
           }
 
           .time {
             position: absolute;
-            right: 1rem;
-            bottom: 1rem;
+            right: $space-md;
+            bottom: $space-md;
             font-size: 0.75rem;
-            color: #aaa;
+            color: $color-text-light;
           }
         }
       }
@@ -187,14 +193,14 @@
   }
 }
 
-// Responsive styles
+// 📱 Responsive styles
 @media (max-width: 600px) {
   .recipe-page-wrapper {
-    padding: 1rem;
+    padding: $space-md;
 
     .recipe-details-grid {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: $space-lg;
 
       .left-section,
       .right-section {
@@ -218,11 +224,11 @@
         .actions {
           display: flex;
           flex-direction: column;
-          gap: 0.6rem;
+          gap: $space-sm;
 
           button {
             width: 100%;
-            padding: 0.6rem;
+            padding: $space-sm;
             font-size: 1rem;
           }
         }
@@ -234,16 +240,16 @@
         }
 
         .comment-section {
-          padding: 1rem;
+          padding: $space-md;
 
           textarea {
-            padding: 0.6rem;
+            padding: $space-sm;
             font-size: 0.95rem;
           }
 
           button {
             width: 100%;
-            padding: 0.5rem;
+            padding: $space-sm;
             font-size: 1rem;
           }
 

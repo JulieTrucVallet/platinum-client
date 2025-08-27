@@ -1,30 +1,32 @@
+@import "./variables";
+
 .favorites-page {
-  padding: 2rem;
-  font-family: "Montserrat", sans-serif;
+  padding: $space-lg;
+  font-family: $font-main;
 
   // Page title
   h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin-bottom: $space-lg;
 
     // Highlighted word
     span {
-      color: #b49700;
+      color: $color-accent;
     }
   }
 
   .recipe-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: $space-lg;
     justify-items: center;
 
     .recipe-card {
-      background-color: #f7f7f7;
-      border-radius: 16px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      background-color: $color-bg-alt;
+      border-radius: $radius-lg;
+      box-shadow: $shadow-sm;
       overflow: hidden;
       width: 100%;
       max-width: 500px;
@@ -46,39 +48,40 @@
       .no-image {
         width: 100%;
         height: 180px;
-        background-color: #ddd;
+        background-color: $color-border;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 2rem;
-        color: #999;
+        color: $color-text-light;
       }
 
       .card-content {
-        padding: 1rem;
+        padding: $space-md;
 
         .recipe-title {
           font-size: 1.2rem;
           font-weight: bold;
-          margin-bottom: 0.5rem;
+          margin-bottom: $space-sm;
+          color: $color-text;
         }
 
         .prep-time {
-          font-size: 0.9rem;
-          color: #666;
-          margin-bottom: 0.5rem;
+          font-size: $font-size-small;
+          color: $color-text-light;
+          margin-bottom: $space-sm;
         }
 
         .author {
-          font-size: 0.9rem;
-          color: #333;
-          margin-bottom: 1rem;
+          font-size: $font-size-small;
+          color: $color-text;
+          margin-bottom: $space-md;
         }
 
         // Link to see the recipe details
         .see-recipe {
           text-decoration: none;
-          color: #b49700;
+          color: $color-accent;
           font-weight: bold;
 
           &:hover {

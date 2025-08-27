@@ -1,10 +1,9 @@
 // Import libraries and assets
-import axios from "axios";
 import { useState } from "react";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/platinum-logo.png";
-import { API_URL } from "../config";
+import { register as registerService } from "../services/AuthService";
 import "../styles/Register.scss";
 
 function Register() {
@@ -26,15 +25,11 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `${API_URL}/auth/register`,
-        formData
-      );
-      alert("Registration successful!");
+      await registerService(formData);
+      alert("Inscription réussie !");
       navigate("/login");
     } catch (err) {
-      console.error(err.response?.data || err.message);
-      alert("Registration failed");
+      alert(err.response?.data?.message || "Erreur lors de l’inscription");
     }
   };
 

@@ -1,9 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/platinum-logo.png";
-import { API_URL } from "../config";
 import { useAuth } from "../context/AuthContext";
+import { login as loginService } from "../services/AuthService";
 import "../styles/Login.scss";
 
 function Login() {
@@ -22,15 +21,11 @@ function Login() {
     e.preventDefault();
     setMessage("");
     try {
-      const res = await axios.post(
-        `${API_URL}/auth/login`,
-        formData
-      );
-      const { token, user } = res.data;
-      login(user, token); // set user in context
-      localStorage.setItem("token", token); // store token
+      const { token, user } = await loginService(formData.email, formData.password);
+      login(user, token); // ton AuthContext
+      localStorage.setItem("token", token);
       setMessage("Connexion réussie ! 🎉");
-      setTimeout(() => navigate("/"), 1500); // redirect after success
+      setTimeout(() => navigate("/"), 1500);
     } catch (err) {
       setMessage(err.response?.data?.message || "Erreur de connexion");
     }

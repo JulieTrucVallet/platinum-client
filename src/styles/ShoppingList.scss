@@ -1,25 +1,27 @@
+@import "./variables";
+
 .shopping-page {
-  background: url("/path/to/your/lemon-slice.png") no-repeat right bottom;
+  background: url("../assets/lemon.png") no-repeat right bottom;
   background-size: 35%;
   min-height: 100vh;
-  padding: 1rem;
+  padding: $space-md;
 
   .notepad {
-    background: #fff;
+    background: $color-bg;
     max-width: 500px;
     margin: 0 auto;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    padding: $space-lg;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
     font-family: "Georgia", serif;
     position: relative;
   }
 
   h2 {
     text-align: center;
-    color: #3d3d3d;
+    color: $color-text;
     font-size: 1.6rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: $space-md;
   }
 
   .ingredient-list {
@@ -32,11 +34,11 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.8rem;
-      background: #f9f9f9;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+      margin-bottom: $space-sm;
+      background: $color-bg-alt;
+      padding: $space-sm $space-md;
+      border-radius: $radius-md;
+      box-shadow: $shadow-sm;
       font-size: 0.95rem;
 
       &.checked {
@@ -45,15 +47,15 @@
       }
 
       input[type="checkbox"] {
-        margin-right: 0.5rem;
+        margin-right: $space-sm;
       }
 
       .delete-btn {
         background: transparent;
         border: none;
         font-size: 1.2rem;
-        color: #a00;
-        margin-right: 0.8rem;
+        color: $color-error; // 🔴 variable pour les erreurs
+        margin-right: $space-sm;
         cursor: pointer;
       }
 
@@ -65,28 +67,23 @@
   }
 
   .actions {
-    margin-top: 1.5rem;
+    margin-top: $space-lg;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: $space-sm;
 
     input {
-      padding: 0.5rem 0.8rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      padding: $space-sm $space-md;
+      border: 1px solid $color-border;
+      border-radius: $radius-md;
       font-family: inherit;
       width: 100%;
     }
 
     .add-btn {
+      @extend .btn;
+      background: $color-success;
       align-self: center;
-      padding: 0.5rem 1rem;
-      background: #3b6e3b;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
     }
   }
 
@@ -102,7 +99,7 @@
       }
 
       .add-btn {
-        margin-left: 1rem;
+        margin-left: $space-md;
         align-self: flex-end;
       }
     }
@@ -116,11 +113,11 @@
     }
 
     .notepad {
-      padding: 2rem;
+      padding: $space-xl;
     }
 
     .shopping-page {
-      padding: 2rem;
+      padding: $space-lg;
     }
   }
 }
