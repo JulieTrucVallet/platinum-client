@@ -110,18 +110,50 @@ body.login-page {
   }
 }
 
-// 📱 Responsive
+// Responsive
 @media (max-width: 600px) {
-  .login-form {
-    width: 100%;
-    max-width: 320px;
-
+  .login-page,
+  .register-page {
+    padding: $space-md;
+    
     .logo {
-      width: 320px;
+      width: 250px;
+      margin-bottom: $space-md;
     }
 
-    .login-btn {
+    .login-form,
+    .register-form {
       width: 100%;
+      max-width: 320px;
+      gap: $space-md;
+
+      .input-group {
+        padding-bottom: $space-xs;
+
+        input {
+          font-size: 1rem;
+          padding: $space-sm 0;
+        }
+
+        .icon {
+          font-size: 1.1rem;
+          margin-right: $space-sm;
+        }
+      }
+
+      .login-btn,
+      .register-btn {
+        width: 100%;
+        font-size: 1rem;
+        padding: $space-sm;
+      }
+
+      .forgot,
+      .signup,
+      .login-link {
+        font-size: 0.9rem;
+        text-align: center;
+      }
     }
   }
 }
