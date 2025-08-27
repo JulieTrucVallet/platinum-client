@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import RecipeForm from "../components/admin/RecipeForm";
-import { getRecipeById, updateRecipe } from "../services/RecipeService"; // ✅ exports nommés
+import { getRecipeById, updateRecipe } from "../services/RecipeService";
 
 export default function AdminEditRecipe() {
   const { id } = useParams();
@@ -13,7 +13,7 @@ export default function AdminEditRecipe() {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const recipe = await getRecipeById(id); // ✅ appel direct par ID
+        const recipe = await getRecipeById(id); 
         setInitialData(recipe);
       } catch (err) {
         console.error("Erreur lors du chargement de la recette :", err);
@@ -30,7 +30,7 @@ export default function AdminEditRecipe() {
   // Handle form submission
   const handleSubmit = async (formData) => {
     try {
-      await updateRecipe(id, formData); // ✅ export nommé
+      await updateRecipe(id, formData);
       alert("Recette mise à jour !");
       navigate("/admin");
     } catch (error) {
@@ -44,11 +44,15 @@ export default function AdminEditRecipe() {
   return (
     <main className="edit-recipe-page">
       <header>
-        <h2>✏️ Modifier une recette</h2>
+        <h2 aria-label="Modifier une recette">✏️ Modifier une recette</h2>
       </header>
 
       <section>
-        <RecipeForm onSubmit={handleSubmit} initialData={initialData} />
+        <RecipeForm 
+          onSubmit={handleSubmit} 
+          initialData={initialData} 
+          submitLabel="Mettre à jour"
+        />
       </section>
     </main>
   );

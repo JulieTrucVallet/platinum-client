@@ -50,20 +50,6 @@
         font-size: 0.9rem;
       }
     }
-
-    .btn-upload {
-      background-color: $color-accent;
-      border: none;
-      padding: 0.4rem 1rem;
-      border-radius: $radius-sm;
-      margin-top: $space-sm;
-      cursor: pointer;
-      font-weight: bold;
-
-      &:hover {
-        background-color: darken($color-accent, 5%);
-      }
-    }
   }
 
   .profile-form {
@@ -72,20 +58,20 @@
     gap: $space-md;
 
     .form-group {
-      text-align: left;
-
-      label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: $space-xs;
-      }
-
       input {
         width: 100%;
         padding: $space-sm;
         border: 1px solid $color-border;
         border-radius: $radius-sm;
         font-size: 0.95rem;
+
+        &::placeholder {
+          color: $color-text-light;
+        }
+
+        &:focus {
+          outline: 2px solid $color-primary;
+        }
       }
     }
 
@@ -101,6 +87,10 @@
 
       &:hover {
         background-color: darken($color-primary, 10%);
+      }
+
+      &:focus {
+        outline: 2px solid $color-accent;
       }
     }
   }
@@ -157,7 +147,7 @@
       padding: 0.5rem;
     }
 
-    .form-group input {
+    .profile-form input {
       font-size: 0.9rem;
     }
 

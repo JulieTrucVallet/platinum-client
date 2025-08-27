@@ -5,20 +5,16 @@ import { API_URL } from "../config";
 import "../styles/Favorites.scss";
 
 function Favorites() {
-  const [favorites, setFavorites] = useState([]); // store user's favorite recipes
-  const [error, setError] = useState(""); // handle potential error messages
+  const [favorites, setFavorites] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    // fetch user's favorite recipes from the server
     const fetchFavorites = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(
-          `${API_URL}/recipes/user/favorites`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        const res = await axios.get(`${API_URL}/recipes/user/favorites`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setFavorites(res.data);
       } catch (err) {
         setError(err.response?.data?.message || "Erreur lors du chargement");
@@ -28,7 +24,7 @@ function Favorites() {
     fetchFavorites();
   }, []);
 
-  if (error) return <p>{error}</p>; // display error if any
+  if (error) return <p role="alert">{error}</p>;
 
   return (
     <main className="favorites-page">
@@ -40,7 +36,9 @@ function Favorites() {
 
       <section>
         {favorites.length === 0 ? (
-          <p style={{ textAlign: "center" }}>Pas encore de favoris...</p>
+          <p role="status" style={{ textAlign: "center" }}>
+            Pas encore de favoris...
+          </p>
         ) : (
           <div className="recipe-grid">
             {favorites.map((r) => (
@@ -49,10 +47,11 @@ function Favorites() {
                   <img
                     src={`${import.meta.env.VITE_UPLOADS_URL}${r.image}`}
                     alt={r.title}
+                    loading="lazy"   // ✅ lazy loading ajouté
                   />
                 ) : (
                   <div className="no-image">
-                    <span>📷</span>
+                    <span aria-hidden="true">📷</span>
                   </div>
                 )}
 

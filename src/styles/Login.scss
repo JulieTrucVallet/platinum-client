@@ -1,9 +1,7 @@
 @import "./variables.scss";
 
-// Applique fond blanc + désactive le citron du ::after
 body.login-page {
   background-color: $color-bg;
-
   &::after {
     display: none;
   }
@@ -14,10 +12,10 @@ body.login-page {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  min-height: 90vh;
 
   .logo {
-    width: 460px;
+    width: 280px;
     margin-bottom: $space-lg;
   }
 
@@ -25,24 +23,10 @@ body.login-page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 380px;
+    width: 100%;
+    max-width: 380px;
     gap: $space-md * 1.5;
 
-    // Input de base
-    input {
-      border: none;
-      outline: none;
-      flex: 1;
-      padding: $space-sm 0;
-      background: transparent;
-      color: $color-text;
-
-      &::placeholder {
-        color: $color-text-light;
-      }
-    }
-
-    // Icône + input
     .input-group {
       display: flex;
       align-items: center;
@@ -50,29 +34,39 @@ body.login-page {
       width: 100%;
       padding-bottom: $space-xs;
 
-      label {
+      // Icône
+      .icon {
         margin-right: $space-sm;
-        font-size: 1.4em;
+        font-size: 1.2em;
+        color: $color-text-light;
       }
 
       input {
+        flex: 1;
         border: none;
         outline: none;
-        flex: 1;
         padding: $space-sm 0;
         font-size: 1.1em;
         background: transparent;
+        color: $color-text;
+
+        &::placeholder {
+          color: $color-text-light;
+        }
       }
     }
 
-    // Texte "mot de passe oublié"
     .forgot {
       font-size: $font-size-small;
       color: $color-text-light;
       align-self: flex-start;
+
+      &:hover {
+        text-decoration: underline;
+        color: $color-primary;
+      }
     }
 
-    // Bouton connexion
     .login-btn {
       background-color: $color-accent;
       color: $color-text;
@@ -80,6 +74,7 @@ body.login-page {
       font-weight: bold;
       font-size: 1.1em;
       border: none;
+      border-radius: $radius-md;
       cursor: pointer;
       box-shadow: $shadow-sm;
       transition: background-color 0.3s;
@@ -89,9 +84,9 @@ body.login-page {
       }
     }
 
-    // Section inscription
     .signup {
       font-size: 1em;
+      color: $color-text;
 
       a {
         font-weight: bold;

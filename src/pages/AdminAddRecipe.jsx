@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import RecipeForm from "../components/admin/RecipeForm";
-import { createRecipe } from "../services/RecipeService"; // ✅ utilise l’export nommé
+import { createRecipe } from "../services/RecipeService";
 
 export default function AdminAddRecipe() {
   const navigate = useNavigate();
 
   const handleSubmit = async (formData) => {
     try {
-      await createRecipe(formData); // ✅ fonction nommée
+      await createRecipe(formData);
       alert("Recette ajoutée avec succès !");
       navigate("/admin");
     } catch (error) {

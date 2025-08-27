@@ -25,14 +25,16 @@ export default function AddRecipe() {
   return (
     <main className="add-recipe-page">
       <header>
-        <h2>🫐 Nouvelle recette</h2>
+        <h1 id="addRecipeTitle">🫐 Nouvelle recette</h1>
       </header>
-      <section>
+
+      <section aria-labelledby="addRecipeTitle">
         <RecipeForm
           onSubmit={handleSubmit}
           isSubmitting={isSubmitting}
           categories={categories}
         />
+        {isSubmitting && <p role="status">Enregistrement en cours…</p>}
       </section>
     </main>
   );

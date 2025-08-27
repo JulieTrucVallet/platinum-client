@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../../styles/RecipeForm.scss";
 
 const empty = {
@@ -21,6 +21,7 @@ export default function RecipeForm({
 }) {
   const [values, setValues] = useState(empty);
   const [preview, setPreview] = useState(null);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     if (!initialValues) return;
@@ -91,17 +92,18 @@ export default function RecipeForm({
       {/* Image input and preview */}
       <div
         className="image-preview"
-        onClick={() => document.getElementById("imageInput").click()}
+        onClick={() => fileInputRef.current?.click()}
       >
         {preview ? (
           <img src={preview} alt="Aperçu" />
         ) : (
           <div className="placeholder">
-            <i className="icon-image" />
+            <i className="icon-image" aria-hidden="true" />
           </div>
         )}
         <div className="edit-icon">✏️</div>
         <input
+          ref={fileInputRef}
           id="imageInput"
           type="file"
           accept="image/*"
@@ -111,7 +113,9 @@ export default function RecipeForm({
       </div>
 
       {/* Title */}
+      <label htmlFor="title" className="sr-only">Nom de la recette</label>
       <input
+        id="title"
         name="title"
         value={values.title}
         onChange={handleChange}
@@ -120,7 +124,9 @@ export default function RecipeForm({
       />
 
       {/* Duration */}
+      <label htmlFor="duration" className="sr-only">Temps (minutes)</label>
       <input
+        id="duration"
         name="duration"
         value={values.duration}
         onChange={handleChange}
@@ -153,7 +159,9 @@ export default function RecipeForm({
         <h4>🧾 Ingrédients</h4>
         {values.ingredients.map((ing, i) => (
           <div key={i} className="ingredient-line">
+            <label htmlFor={`ingredient-name-${i}`} className="sr-only">Nom ingrédient</label>
             <input
+              id={`ingredient-name-${i}`}
               value={ing.name}
               onChange={(e) =>
                 handleIngredientChange(i, "name", e.target.value)
@@ -161,7 +169,9 @@ export default function RecipeForm({
               placeholder="Nom"
               required
             />
+            <label htmlFor={`ingredient-qty-${i}`} className="sr-only">Quantité</label>
             <input
+              id={`ingredient-qty-${i}`}
               value={ing.quantity}
               onChange={(e) =>
                 handleIngredientChange(i, "quantity", e.target.value)
@@ -181,7 +191,9 @@ export default function RecipeForm({
       </div>
 
       {/* Steps */}
+      <label htmlFor="steps" className="sr-only">Description des étapes</label>
       <textarea
+        id="steps"
         name="steps"
         value={values.steps}
         onChange={handleChange}
@@ -190,7 +202,9 @@ export default function RecipeForm({
       />
 
       {/* Optional link */}
+      <label htmlFor="link" className="sr-only">Lien optionnel</label>
       <input
+        id="link"
         name="link"
         value={values.link}
         onChange={handleChange}

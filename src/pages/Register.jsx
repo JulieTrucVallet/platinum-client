@@ -1,4 +1,3 @@
-// Import libraries and assets
 import { useState } from "react";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,7 +6,6 @@ import { register as registerService } from "../services/AuthService";
 import "../styles/Register.scss";
 
 function Register() {
-  // Form state
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -16,12 +14,10 @@ function Register() {
 
   const navigate = useNavigate();
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -36,43 +32,53 @@ function Register() {
   return (
     <main className="register-page">
       <header>
-        <img src={logo} alt="Platinum Logo" className="logo" />
+        <img src={logo} alt="Logo Platinum" className="logo" />
       </header>
 
-      <section>
+      <section aria-labelledby="register-title">
+        <h1 id="register-title" className="sr-only">
+          Créer un compte
+        </h1>
+
         <form className="register-form" onSubmit={handleSubmit}>
+          {/* Username */}
           <div className="input-group">
-            <label htmlFor="username">
-              <FaUser /> Nom d’utilisateur
+            <label htmlFor="username" className="sr-only">
+              Nom d’utilisateur
             </label>
+            <FaUser className="icon" aria-hidden="true" />
             <input
               type="text"
               id="username"
               name="username"
-              placeholder="Votre nom"
+              placeholder="Nom"
               onChange={handleChange}
               required
             />
           </div>
 
+          {/* Email */}
           <div className="input-group">
-            <label htmlFor="email">
-              <FaEnvelope /> Adresse email
+            <label htmlFor="email" className="sr-only">
+              Adresse email
             </label>
+            <FaEnvelope className="icon" aria-hidden="true" />
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="votre.email@mail.com"
+              placeholder="prenom.nom@mail.com"
               onChange={handleChange}
               required
             />
           </div>
 
+          {/* Password */}
           <div className="input-group">
-            <label htmlFor="password">
-              <FaLock /> Mot de passe
+            <label htmlFor="password" className="sr-only">
+              Mot de passe
             </label>
+            <FaLock className="icon" aria-hidden="true" />
             <input
               type="password"
               id="password"
@@ -84,11 +90,11 @@ function Register() {
           </div>
 
           <button type="submit" className="register-btn">
-            Inscription
+            S’INSCRIRE
           </button>
 
           <p className="login-link">
-            Déjà un compte ? <Link to="/login">Connexion</Link>
+            Déjà inscrit ? <Link to="/login">SE CONNECTER</Link>
           </p>
         </form>
       </section>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteRecipe, getRecipes } from "../services/RecipeService"; // ✅
+import { deleteRecipe, getRecipes } from "../services/RecipeService";
 
 export default function AdminDashboard() {
   const [recipes, setRecipes] = useState([]);
@@ -9,7 +9,7 @@ export default function AdminDashboard() {
 
   const fetchRecipes = async () => {
     try {
-      const data = await getRecipes(); // ✅ correspond à RecipeService.js
+      const data = await getRecipes();
       setRecipes(data);
     } catch (error) {
       console.error("Erreur lors du chargement des recettes admin:", error);

@@ -135,31 +135,33 @@ function Profile() {
         <section>
           <form className="profile-form" onSubmit={handleUpdate}>
             <div className="form-group">
-              <label htmlFor="username">Nom :</label>
+              <label htmlFor="username" className="sr-only">Nom d’utilisateur</label>
               <input
                 type="text"
                 id="username"
                 value={profile.username}
                 disabled
+                placeholder="Nom d’utilisateur"
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email">Email :</label>
+              <label htmlFor="email" className="sr-only">Adresse email</label>
               <input
                 type="email"
                 id="email"
                 value={email}
+                placeholder="Adresse email"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Mot de passe :</label>
+              <label htmlFor="password" className="sr-only">Mot de passe</label>
               <input
                 type="password"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Laissez vide pour conserver le même"
+                placeholder="Nouveau mot de passe (laisser vide si inchangé)"
               />
             </div>
             <button type="submit" className="btn-submit">

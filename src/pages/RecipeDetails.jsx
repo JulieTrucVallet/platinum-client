@@ -151,8 +151,9 @@ function RecipeDetails() {
                   ? recipe.image
                   : `${import.meta.env.VITE_UPLOADS_URL}${recipe.image}`
               }
-              alt={recipe.title}
+              alt={`Image de la recette ${recipe.title}`}
               className="recipe-image"
+              loading="lazy"
             />
           )}
 
@@ -173,8 +174,11 @@ function RecipeDetails() {
               {recipe.ingredients.map((ing, i) => (
                 <li key={i}>
                   {ing?.name} {ing?.quantity && `(${ing.quantity})`}
-                  <button onClick={() => handleAddToList(ing.name, ing.quantity)}>
-                    ➕ Ajouter à la liste de courses
+                  <button
+                    aria-label={`Ajouter ${ing?.name} à la liste de courses`}
+                    onClick={() => handleAddToList(ing.name, ing.quantity)}
+                  >
+                    ➕ Ajouter
                   </button>
                 </li>
               ))}
@@ -197,10 +201,15 @@ function RecipeDetails() {
 
             {recipe.user?._id === userId && (
               <>
-                <button onClick={() => navigate(`/recipes/${id}/edit`)}>
+                <button
+                  aria-label="Modifier la recette"
+                  onClick={() => navigate(`/recipes/${id}/edit`)}
+                >
                   ✏️ Modifier
                 </button>
-                <button onClick={handleDelete}>🗑️ Supprimer</button>
+                <button aria-label="Supprimer la recette" onClick={handleDelete}>
+                  🗑️ Supprimer
+                </button>
               </>
             )}
           </footer>
@@ -214,6 +223,7 @@ function RecipeDetails() {
             {recipe.link ? (
               recipe.link.includes("youtube") ? (
                 <iframe
+                  title={`Vidéo de la recette ${recipe.title}`}
                   width="100%"
                   height="250"
                   src={recipe.link.replace("watch?v=", "embed/")}
@@ -221,7 +231,12 @@ function RecipeDetails() {
                   allowFullScreen
                 ></iframe>
               ) : (
-                <a href={recipe.link} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={recipe.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Lien associé à la recette ${recipe.title}`}
+                >
                   {recipe.link}
                 </a>
               )
@@ -237,7 +252,11 @@ function RecipeDetails() {
             {/* Formulaire commentaire */}
             {token && (
               <form style={{ marginBottom: "1rem" }}>
+                <label htmlFor="commentTextarea" className="sr-only">
+                  Laisser un commentaire
+                </label>
                 <textarea
+                  id="commentTextarea"
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                   rows={3}

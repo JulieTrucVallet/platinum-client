@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaEnvelope, FaLock } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/platinum-logo.png";
 import { useAuth } from "../context/AuthContext";
@@ -6,23 +7,21 @@ import { login as loginService } from "../services/AuthService";
 import "../styles/Login.scss";
 
 function Login() {
-  const { login } = useAuth(); // context function to set user
-  const [formData, setFormData] = useState({ email: "", password: "" }); // login form state
-  const [message, setMessage] = useState(""); // success or error message
+  const { login } = useAuth();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  // update form fields
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // handle login submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
     try {
       const { token, user } = await loginService(formData.email, formData.password);
-      login(user, token); // ton AuthContext
+      login(user, token);
       localStorage.setItem("token", token);
       setMessage("Connexion réussie ! 🎉");
       setTimeout(() => navigate("/"), 1500);
@@ -39,11 +38,12 @@ function Login() {
 
       <section>
         <form className="login-form" onSubmit={handleSubmit}>
-          {/* Email field */}
+          {/* Email */}
           <div className="input-group">
-            <label htmlFor="email">
-              <i className="fa fa-envelope" /> Adresse email
+            <label htmlFor="email" className="sr-only">
+              Adresse email
             </label>
+            <FaEnvelope className="icon" aria-hidden="true" />
             <input
               name="email"
               type="email"
@@ -54,11 +54,12 @@ function Login() {
             />
           </div>
 
-          {/* Password field */}
+          {/* Password */}
           <div className="input-group">
-            <label htmlFor="password">
-              <i className="fa fa-lock" /> Mot de passe
+            <label htmlFor="password" className="sr-only">
+              Mot de passe
             </label>
+            <FaLock className="icon" aria-hidden="true" />
             <input
               name="password"
               type="password"
@@ -69,18 +70,14 @@ function Login() {
             />
           </div>
 
-          {/* Forgot password */}
           <p className="forgot">Mot de passe oublié ?</p>
 
-          {/* Submit button */}
           <button type="submit" className="login-btn">
             SE CONNECTER
           </button>
 
-          {/* Display message */}
           {message && <p className="message">{message}</p>}
 
-          {/* Link to register */}
           <p className="signup">
             Pas encore de compte ? <Link to="/register">S’INSCRIRE</Link>
           </p>

@@ -1,76 +1,88 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/platinum-logo-slogan.png";
-import { API_URL } from "../config";
+import { getRecipes } from "../services/RecipeService";
 import "../styles/Home.scss";
 
-function Home() {
-  const [recipes, setRecipes] = useState([]); // all recipes
-  const [error, setError] = useState(""); // error message
-  const [searchTerm, setSearchTerm] = useState(""); // text search
-  const [ingredients, setIngredients] = useState([]); // list of ingredients to filter
-  const [ingredientInput, setIngredientInput] = useState(""); // input value for ingredient filter
+export default function Home() {
+  const [recipes, setRecipes] = useState([]);
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+  const [ingredientInput, setIngredientInput] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    // fetch all recipes from the API
-    const fetchRecipes = async () => {
-      try {
-        const res = await axios.get(`${API_URL}/recipes`);
-        setRecipes(res.data);
-      } catch (err) {
-        setError("Erreur lors du chargement des recettes");
-      }
-    };
-
-    fetchRecipes();
+    getRecipes()
+      .then((data) => {
+        setRecipes(data);
+        setFilteredRecipes(data);
+      })
+      .catch(() => setError("Erreur lors du chargement des recettes"));
   }, []);
 
-  // filter recipes by title and ingredients
-  const filteredRecipes = recipes.filter(
-    (recipe) =>
-      recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      ingredients.every((ingredient) =>
-        recipe.ingredients.some((ing) =>
-          ing.name?.toLowerCase().includes(ingredient.toLowerCase())
-        )
-      )
-  );
+  // 🔎 Filtrage
+  useEffect(() => {
+    let filtered = recipes;
 
-  // add an ingredient filter
+    if (searchTerm) {
+      filtered = filtered.filter((r) =>
+        r.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    if (ingredients.length > 0) {
+      filtered = filtered.filter((r) =>
+        ingredients.every((ing) =>
+          r.ingredients.some((ri) =>
+            ri.name.toLowerCase().includes(ing.toLowerCase())
+          )
+        )
+      );
+    }
+
+    setFilteredRecipes(filtered);
+  }, [searchTerm, ingredients, recipes]);
+
   const handleAddIngredient = () => {
-    if (
-      ingredientInput.trim() &&
-      !ingredients.includes(ingredientInput.trim())
-    ) {
+    if (ingredientInput.trim() && !ingredients.includes(ingredientInput)) {
       setIngredients([...ingredients, ingredientInput.trim()]);
       setIngredientInput("");
     }
   };
 
-  // remove an ingredient filter
   const handleRemoveIngredient = (ing) => {
     setIngredients(ingredients.filter((i) => i !== ing));
   };
 
   return (
     <main className="home-page">
+      {/* 🔝 En-tête */}
       <header className="home-header">
-        <h1 className="home-title">
+        <div className="home-title">
           <img src={logo} alt="Logo Platinum" className="home-logo" />
-        </h1>
+        </div>
 
-        {/* Filtres */}
-        <section className="sticky-filters">
+        {/* 🔎 Zone filtres */}
+        <section className="sticky-filters" aria-label="Filtres de recherche">
+          <label htmlFor="searchInput" className="sr-only">
+            Recherche par titre
+          </label>
           <input
+            id="searchInput"
             type="text"
-            placeholder="Recherche"
+            placeholder="Recherche par titre"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
           />
+
           <div className="right-filters">
+            <label htmlFor="ingredientInput" className="sr-only">
+              Ajouter un ingrédient
+            </label>
             <input
+              id="ingredientInput"
               type="text"
               placeholder="Ajouter un ingrédient"
               value={ingredientInput}
@@ -81,22 +93,26 @@ function Home() {
             </button>
           </div>
 
-          {/* Tags ingrédients ajoutés */}
+          {/* 🏷️ Tags ingrédients */}
           <div className="ingredient-tags">
             {ingredients.map((ing, idx) => (
               <span key={idx} className="tag">
-                {ing}
-                <button onClick={() => handleRemoveIngredient(ing)}>x</button>
+                {ing}{" "}
+                <button onClick={() => handleRemoveIngredient(ing)}>×</button>
               </span>
             ))}
           </div>
         </section>
       </header>
 
-      {/* Message d’erreur */}
-      {error && <p className="error-msg">{error}</p>}
+      {/* 🚨 Message erreur */}
+      {error && (
+        <p className="error-msg" role="alert" aria-live="polite">
+          {error}
+        </p>
+      )}
 
-      {/* Recettes */}
+      {/* 📋 Recettes */}
       <section className="recipe-grid">
         {filteredRecipes.map((recipe) => (
           <article className="recipe-card" key={recipe._id}>
@@ -107,16 +123,22 @@ function Home() {
                     ? recipe.image
                     : `${import.meta.env.VITE_UPLOADS_URL}${recipe.image}`
                 }
-                alt={recipe.title}
+                alt={`Illustration de la recette ${recipe.title}`}
+                loading="lazy"
               />
             ) : (
-              <div className="no-image">
-                <span>📷</span>
+              <div className="no-image" aria-label="Aucune image disponible">
+                <span role="img" aria-hidden="true">
+                  📷
+                </span>
               </div>
             )}
+
             <div className="card-content">
               <h2 className="recipe-title">{recipe.title}</h2>
-              <p className="prep-time">Préparation : {recipe.duration} min</p>
+              <p className="prep-time">
+                Préparation : {recipe.duration || "–"} min
+              </p>
               <Link to={`/recipes/${recipe._id}`} className="see-recipe">
                 Voir la recette →
               </Link>
@@ -127,5 +149,3 @@ function Home() {
     </main>
   );
 }
-
-export default Home;
