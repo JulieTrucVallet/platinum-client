@@ -96,7 +96,7 @@ function Profile() {
 
   return (
     <div className="profile-page">
-      <h2 className="profile-title">🍃 MY PROFILE</h2>
+      <h2 className="profile-title">🍃 Mon Profil</h2>
 
       <div className="profile-card">
         {/* Profile image preview */}
@@ -132,7 +132,7 @@ function Profile() {
         {/* Profile form */}
         <form className="profile-form" onSubmit={handleUpdate}>
           <div className="form-group">
-            <label>Name:</label>
+            <label>Nom:</label>
             <input type="text" value={profile.username} disabled />
           </div>
           <div className="form-group">
@@ -144,7 +144,7 @@ function Profile() {
             />
           </div>
           <div className="form-group">
-            <label>Password:</label>
+            <label>Mot de passe:</label>
             <input
               type="password"
               value={password}
@@ -153,17 +153,17 @@ function Profile() {
             />
           </div>
           <button type="submit" className="btn-submit">
-            ✅ Update
+            Mettre à jour
           </button>
         </form>
 
         {/* Stats */}
         <div className="profile-stats">
           <p>
-            📌 Created recipes: <strong>{profile.recipeCount}</strong>
+            📌 Recettes créées: <strong>{profile.recipeCount}</strong>
           </p>
           <p>
-            ⭐ Favorites: <strong>{profile.favoriteCount}</strong>
+            ⭐ Favoris: <strong>{profile.favoriteCount}</strong>
           </p>
         </div>
 

@@ -84,7 +84,7 @@ function ShoppingList() {
   return (
     <div className="shopping-page">
       <div className="notepad">
-        <h2>🛒 Liste des courses</h2>
+        <h2>🛒 Liste de courses</h2>
 
         {/* Ingredient list */}
         {ingredients.length === 0 ? (
@@ -116,7 +116,7 @@ function ShoppingList() {
         <div className="actions">
           <input
             type="text"
-            placeholder="New ingredient"
+            placeholder="Nouvel ingrédient"
             value={newIngredient.name}
             onChange={(e) =>
               setNewIngredient({ ...newIngredient, name: e.target.value })
@@ -124,7 +124,7 @@ function ShoppingList() {
           />
           <input
             type="text"
-            placeholder="Quantity"
+            placeholder="Quantité"
             value={newIngredient.quantity}
             onChange={(e) =>
               setNewIngredient({ ...newIngredient, quantity: e.target.value })
