@@ -1,5 +1,5 @@
-// src/components/admin/RecipeForm.jsx
 import { useEffect, useState } from "react";
+import "../../styles/RecipeForm.scss";
 
 const empty = {
   title: "",
