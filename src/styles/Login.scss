@@ -12,11 +12,11 @@ body.login-page {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 90vh;
+  min-height: 100vh; // 🔹 centré parfaitement verticalement
 
   .logo {
-    width: 280px;
-    margin-bottom: $space-lg;
+    width: 320px; // 🔹 un peu plus grand
+    margin-bottom: $space-xl;
   }
 
   .login-form {
@@ -24,20 +24,23 @@ body.login-page {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 380px;
-    gap: $space-md * 1.5;
+    max-width: 420px; // 🔹 largeur augmentée
+    padding: $space-lg; // 🔹 espace interne
+    gap: $space-lg;
+    background: $color-bg-alt; // 🔹 fond léger pour détacher du fond blanc
+    border-radius: $radius-lg;
+    box-shadow: $shadow-md;
 
     .input-group {
       display: flex;
       align-items: center;
       border-bottom: 1px solid $color-text;
       width: 100%;
-      padding-bottom: $space-xs;
+      padding-bottom: $space-sm;
 
-      // Icône
       .icon {
         margin-right: $space-sm;
-        font-size: 1.2em;
+        font-size: 1.4em; // 🔹 icônes un peu plus grandes
         color: $color-text-light;
       }
 
@@ -70,9 +73,9 @@ body.login-page {
     .login-btn {
       background-color: $color-accent;
       color: $color-text;
-      padding: $space-md $space-lg;
+      padding: $space-md $space-xl; // 🔹 bouton plus large
       font-weight: bold;
-      font-size: 1.1em;
+      font-size: 1.2em; // 🔹 texte bouton plus grand
       border: none;
       border-radius: $radius-md;
       cursor: pointer;
