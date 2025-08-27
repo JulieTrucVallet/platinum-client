@@ -76,15 +76,28 @@ export default function RecipeForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const fd = new FormData();
-    fd.append("title", values.title);
-    fd.append("duration", values.duration);
-    fd.append("link", values.link);
-    fd.append("category", values.category);
-    fd.append("steps", values.steps);
-    fd.append("ingredients", JSON.stringify(values.ingredients));
-    if (values.image) fd.append("image", values.image);
-    onSubmit?.(fd);
+    // Si une image est sélectionnée → FormData
+    if (values.image) {
+      const fd = new FormData();
+      fd.append("title", values.title);
+      fd.append("duration", values.duration);
+      fd.append("link", values.link);
+      fd.append("category", values.category);
+      fd.append("steps", values.steps);
+      fd.append("ingredients", JSON.stringify(values.ingredients));
+      fd.append("image", values.image);
+      onSubmit?.(fd);
+    } else {
+      // Sinon JSON classique
+      onSubmit?.({
+        title: values.title,
+        duration: values.duration,
+        link: values.link,
+        category: values.category,
+        steps: values.steps,
+        ingredients: values.ingredients,
+      });
+    }
   };
 
   return (

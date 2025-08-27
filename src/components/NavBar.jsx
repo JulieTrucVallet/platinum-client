@@ -61,11 +61,6 @@ export default function Navbar() {
                 Profil
               </Link>
             </li>
-            <li>
-              <button onClick={handleLogout} className="btn-logout">
-                Déconnexion
-              </button>
-            </li>
           </>
         ) : (
           <>
