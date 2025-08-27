@@ -1,6 +1,8 @@
 @import "./variables.scss";
 
-.add-recipe-page {
+// Appliquer les mêmes styles à AddRecipe et EditRecipe
+.add-recipe-page,
+.edit-recipe-page {
   padding: $space-lg;
   display: flex;
   flex-direction: column;
