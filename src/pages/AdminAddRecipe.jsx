@@ -1,16 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import RecipeForm from "../components/admin/RecipeForm";
-import RecipeService from "../services/RecipeService";
+import { createRecipe } from "../services/RecipeService"; // ✅ utilise l’export nommé
 
-const AdminAddRecipe = () => {
-  const navigate = useNavigate(); // navigation after success
+export default function AdminAddRecipe() {
+  const navigate = useNavigate();
 
-  // Handle form submission
   const handleSubmit = async (formData) => {
     try {
-      await RecipeService.createRecipe(formData); // call API to create recipe
+      await createRecipe(formData); // ✅ fonction nommée
       alert("Recette ajoutée avec succès !");
-      navigate("/admin"); // redirect to admin dashboard
+      navigate("/admin");
     } catch (error) {
       console.error("Erreur lors de la création de la recette :", error);
       alert("Erreur lors de la création");
@@ -20,9 +19,7 @@ const AdminAddRecipe = () => {
   return (
     <div>
       <h2>Ajouter une recette</h2>
-      <RecipeForm onSubmit={handleSubmit} /> {/* reuse form component */}
+      <RecipeForm onSubmit={handleSubmit} />
     </div>
   );
-};
-
-export default AdminAddRecipe;
+}
