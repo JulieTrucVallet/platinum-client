@@ -2,12 +2,10 @@ import { useState } from "react";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/platinum-logo.png";
-import { useAuth } from "../context/AuthContext"; // ✅ importer le contexte
 import { register as registerService } from "../services/AuthService";
 import "../styles/Register.scss";
 
 export default function Register() {
-  const { login } = useAuth();   // ✅ récupérer login du contexte
   const [formData, setFormData] = useState({ username: "", email: "", password: "" });
   const navigate = useNavigate();
 
@@ -17,14 +15,9 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // 1️⃣ Appel API d'inscription
       await registerService(formData);
-
-      // 2️⃣ Connexion automatique
-      await login(formData.email, formData.password);
-
-      // 3️⃣ Redirection vers l'accueil
-      navigate("/");
+      alert("Inscription réussie !");
+      navigate("/login");
     } catch (err) {
       alert(err.response?.data?.message || "Erreur lors de l’inscription");
     }
