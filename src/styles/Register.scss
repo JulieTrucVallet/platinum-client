@@ -1,12 +1,18 @@
 @import "./variables.scss";
 
-// Applique fond blanc + désactive le citron du ::after
+// fond blanc + pas de décor body
 body.register-page {
   background-color: $color-bg;
 
-  &::after {
-    display: none;
-  }
+  &::after { display: none; }
+}
+
+/* utilité accessibilité (même que sur Login) */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0); overflow: hidden;
 }
 
 .register-page {
@@ -28,36 +34,34 @@ body.register-page {
     width: 380px;
     gap: $space-lg;
 
-    // Groupe icône + input
+    // groupe icône + input (identique à Login)
     .input-group {
       display: flex;
       align-items: center;
-      border-bottom: 1px solid $color-text;
       width: 100%;
+      border-bottom: 1px solid $color-text;
       padding-bottom: $space-xs;
 
-      label {
+      .icon {
         margin-right: $space-sm;
-        font-size: 1.4em;
-        color: $color-text;
+        font-size: 1.2em;
+        color: $color-text-light;
       }
 
       input {
+        flex: 1;
         border: none;
         outline: none;
-        flex: 1;
         padding: $space-sm 0;
         font-size: 1.1em;
         background: transparent;
         color: $color-text;
 
-        &::placeholder {
-          color: $color-text-light;
-        }
+        &::placeholder { color: $color-text-light; }
       }
     }
 
-    // Bouton d'inscription
+    // bouton (mêmes tailles que Login)
     .register-btn {
       background-color: $color-accent;
       color: $color-text;
@@ -68,14 +72,11 @@ body.register-page {
       border-radius: $radius-md;
       cursor: pointer;
       box-shadow: $shadow-sm;
-      transition: background-color 0.3s;
+      transition: background-color .3s;
 
-      &:hover {
-        background-color: darken($color-accent, 10%);
-      }
+      &:hover { background-color: darken($color-accent, 10%); }
     }
 
-    // Lien vers login
     .login-link {
       font-size: 1em;
       color: $color-text;
@@ -89,18 +90,13 @@ body.register-page {
   }
 }
 
-// 📱 Responsive
+// 📱 responsive (copié de Login)
 @media (max-width: 600px) {
   .register-form {
     width: 100%;
     max-width: 320px;
-
-    .logo {
-      width: 320px;
-    }
-
-    .register-btn {
-      width: 100%;
-    }
   }
+
+  .logo { width: 320px; }
+  .register-btn { width: 100%; }
 }
