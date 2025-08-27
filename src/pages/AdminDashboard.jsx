@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteRecipe, getAll } from "../services/RecipeService"; // ✅ utilise exports nommés
+import { deleteRecipe, getRecipes } from "../services/RecipeService"; // ✅
 
 export default function AdminDashboard() {
-  const [recipes, setRecipes] = useState([]); 
-  const [loading, setLoading] = useState(true); 
-  const navigate = useNavigate(); 
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  // Fetch all recipes from API
   const fetchRecipes = async () => {
     try {
-      const data = await getAll(); // ✅ directement via fonction
+      const data = await getRecipes(); // ✅ correspond à RecipeService.js
       setRecipes(data);
     } catch (error) {
       console.error("Erreur lors du chargement des recettes admin:", error);
@@ -20,15 +19,14 @@ export default function AdminDashboard() {
   };
 
   useEffect(() => {
-    fetchRecipes(); 
+    fetchRecipes();
   }, []);
 
-  // Delete recipe by ID
   const handleDelete = async (id) => {
     if (window.confirm("Supprimer cette recette ?")) {
       try {
-        await deleteRecipe(id); // ✅ fonction nommée
-        fetchRecipes(); 
+        await deleteRecipe(id);
+        fetchRecipes();
       } catch (error) {
         console.error("Erreur suppression :", error);
       }
@@ -39,7 +37,6 @@ export default function AdminDashboard() {
     <div className="admin-dashboard">
       <h1>Interface Admin – Recettes</h1>
 
-      {/* Redirect to add recipe page */}
       <button onClick={() => navigate("/admin/add-recipe")}>
         Ajouter une recette
       </button>
