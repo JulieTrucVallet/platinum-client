@@ -17,10 +17,10 @@ export default function RecipeForm({
   onSubmit,
   submitLabel = "Enregistrer",
   categories = [],
+  message = "",
 }) {
   const [values, setValues] = useState(empty);
   const [preview, setPreview] = useState(null);
-  const isEdit = !!initialValues?._id;
 
   useEffect(() => {
     if (!initialValues) return;
@@ -40,24 +40,30 @@ export default function RecipeForm({
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setValues(v => ({ ...v, [name]: value }));
+    setValues((v) => ({ ...v, [name]: value }));
   };
 
   const handleIngredientChange = (i, field, val) => {
     const copy = [...values.ingredients];
     copy[i][field] = val;
-    setValues(v => ({ ...v, ingredients: copy }));
+    setValues((v) => ({ ...v, ingredients: copy }));
   };
 
   const addIngredient = () =>
-    setValues(v => ({ ...v, ingredients: [...v.ingredients, { name: "", quantity: "" }] }));
+    setValues((v) => ({
+      ...v,
+      ingredients: [...v.ingredients, { name: "", quantity: "" }],
+    }));
 
   const removeIngredient = (i) =>
-    setValues(v => ({ ...v, ingredients: v.ingredients.filter((_, idx) => idx !== i) }));
+    setValues((v) => ({
+      ...v,
+      ingredients: v.ingredients.filter((_, idx) => idx !== i),
+    }));
 
   const handleImage = (e) => {
     const file = e.target.files?.[0];
-    setValues(v => ({ ...v, image: file || null }));
+    setValues((v) => ({ ...v, image: file || null }));
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => setPreview(reader.result);
@@ -82,9 +88,19 @@ export default function RecipeForm({
 
   return (
     <form className="recipe-form" onSubmit={handleSubmit}>
-      {/* Image */}
-      <div className="image-preview" onClick={() => document.getElementById("imageInput").click()}>
-        {preview ? <img src={preview} alt="Aperçu" /> : <div className="placeholder" />}
+      {/* Image input and preview */}
+      <div
+        className="image-preview"
+        onClick={() => document.getElementById("imageInput").click()}
+      >
+        {preview ? (
+          <img src={preview} alt="Aperçu" />
+        ) : (
+          <div className="placeholder">
+            <i className="icon-image" />
+          </div>
+        )}
+        <div className="edit-icon">✏️</div>
         <input
           id="imageInput"
           type="file"
@@ -94,6 +110,7 @@ export default function RecipeForm({
         />
       </div>
 
+      {/* Title */}
       <input
         name="title"
         value={values.title}
@@ -102,6 +119,7 @@ export default function RecipeForm({
         required
       />
 
+      {/* Duration */}
       <input
         name="duration"
         value={values.duration}
@@ -109,6 +127,7 @@ export default function RecipeForm({
         placeholder="Temps (min)"
       />
 
+      {/* Category */}
       {!!categories.length && (
         <div className="form-group">
           <label htmlFor="category">Catégorie</label>
@@ -117,33 +136,42 @@ export default function RecipeForm({
             name="category"
             value={values.category}
             onChange={handleChange}
+            required
           >
-            <option value="">-- Catégorie --</option>
-            {categories.map(c => (
-              <option key={c._id} value={c._id}>{c.name}</option>
+            <option value="">-- Sélectionner une catégorie --</option>
+            {categories.map((c) => (
+              <option key={c._id} value={c._id}>
+                {c.name}
+              </option>
             ))}
           </select>
         </div>
       )}
 
-      {/* Ingrédients */}
+      {/* Ingredients */}
       <div className="ingredients-section">
         <h4>🧾 Ingrédients</h4>
         {values.ingredients.map((ing, i) => (
           <div key={i} className="ingredient-line">
             <input
               value={ing.name}
-              onChange={(e) => handleIngredientChange(i, "name", e.target.value)}
+              onChange={(e) =>
+                handleIngredientChange(i, "name", e.target.value)
+              }
               placeholder="Nom"
               required
             />
             <input
               value={ing.quantity}
-              onChange={(e) => handleIngredientChange(i, "quantity", e.target.value)}
+              onChange={(e) =>
+                handleIngredientChange(i, "quantity", e.target.value)
+              }
               placeholder="Quantité"
             />
             {values.ingredients.length > 1 && (
-              <button type="button" onClick={() => removeIngredient(i)}>✕</button>
+              <button type="button" onClick={() => removeIngredient(i)}>
+                ✕
+              </button>
             )}
           </div>
         ))}
@@ -152,6 +180,7 @@ export default function RecipeForm({
         </button>
       </div>
 
+      {/* Steps */}
       <textarea
         name="steps"
         value={values.steps}
@@ -160,16 +189,21 @@ export default function RecipeForm({
         required
       />
 
+      {/* Optional link */}
       <input
         name="link"
         value={values.link}
         onChange={handleChange}
-        placeholder="Lien vidéo / social (facultatif)"
+        placeholder="Lien vidéo, Instagram... (facultatif)"
       />
 
+      {/* Submit */}
       <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Enregistrement..." : submitLabel}
       </button>
+
+      {/* Feedback message */}
+      {message && <p className="message-info">{message}</p>}
     </form>
   );
 }
