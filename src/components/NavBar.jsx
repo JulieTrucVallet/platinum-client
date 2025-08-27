@@ -31,7 +31,7 @@ export default function Navbar() {
         <div className={`bar ${menuOpen ? "open" : ""}`}></div>
       </div>
 
-      {/* Liens menu (mobile inclus) */}
+      {/* Liens menu (MOBILE uniquement) */}
       <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
         <li>
           <Link to="/" onClick={() => setMenuOpen(false)}>
@@ -61,9 +61,16 @@ export default function Navbar() {
                 Profil
               </Link>
             </li>
+            {/* ✅ Déconnexion affichée seulement en mobile */}
+            <li>
+              <button onClick={handleLogout} className="btn-logout">
+                Déconnexion
+              </button>
+            </li>
           </>
         ) : (
           <>
+            {/* ✅ Connexion / Inscription affichées seulement en mobile */}
             <li>
               <Link to="/login" onClick={() => setMenuOpen(false)}>
                 Connexion
@@ -78,7 +85,7 @@ export default function Navbar() {
         )}
       </ul>
 
-      {/* Côté droit (desktop) */}
+      {/* Côté droit (DESKTOP uniquement) */}
       <div className="navbar-right">
         {user ? (
           <>
