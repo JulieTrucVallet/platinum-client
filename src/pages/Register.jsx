@@ -34,69 +34,65 @@ function Register() {
   };
 
   return (
-    <div className="register-page">
-      {/* Logo */}
-      <img src={logo} alt="Platinum Logo" className="logo" />
+    <main className="register-page">
+      <header>
+        <img src={logo} alt="Platinum Logo" className="logo" />
+      </header>
 
-      {/* Register form */}
-      <form className="register-form" onSubmit={handleSubmit}>
-        {/* Username field */}
-        <div className="input-group">
-          <label htmlFor="username">
-            <FaUser />
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Name"
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <section>
+        <form className="register-form" onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="username">
+              <FaUser /> Nom d’utilisateur
+            </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Votre nom"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        {/* Email field */}
-        <div className="input-group">
-          <label htmlFor="email">
-            <FaEnvelope />
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="your.email@mail.com"
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className="input-group">
+            <label htmlFor="email">
+              <FaEnvelope /> Adresse email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="votre.email@mail.com"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        {/* Password field */}
-        <div className="input-group">
-          <label htmlFor="password">
-            <FaLock />
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className="input-group">
+            <label htmlFor="password">
+              <FaLock /> Mot de passe
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Mot de passe"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        {/* Submit button */}
-        <button type="submit" className="register-btn">
-          REGISTER
-        </button>
+          <button type="submit" className="register-btn">
+            Inscription
+          </button>
 
-        {/* Redirect to login */}
-        <div className="login-link">
-          <span>Already have an account? </span>
-          <Link to="/login">LOG IN</Link>
-        </div>
-      </form>
-    </div>
+          <p className="login-link">
+            Déjà un compte ? <Link to="/login">Connexion</Link>
+          </p>
+        </form>
+      </section>
+    </main>
   );
 }
 

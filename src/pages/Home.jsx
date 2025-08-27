@@ -54,14 +54,14 @@ function Home() {
   };
 
   return (
-    <div className="home-page">
+    <main className="home-page">
       <header className="home-header">
-        <div className="home-title">
+        <h1 className="home-title">
           <img src={logo} alt="Logo Platinum" className="home-logo" />
-        </div>
+        </h1>
 
-        {/* Filters section */}
-        <div className="sticky-filters">
+        {/* Filtres */}
+        <section className="sticky-filters">
           <input
             type="text"
             placeholder="Recherche"
@@ -81,25 +81,25 @@ function Home() {
             </button>
           </div>
 
-          {/* Display added ingredient filters */}
+          {/* Tags ingrédients ajoutés */}
           <div className="ingredient-tags">
             {ingredients.map((ing, idx) => (
               <span key={idx} className="tag">
-                {ing}{" "}
+                {ing}
                 <button onClick={() => handleRemoveIngredient(ing)}>x</button>
               </span>
             ))}
           </div>
-        </div>
+        </section>
       </header>
 
-      {/* Display error if needed */}
+      {/* Message d’erreur */}
       {error && <p className="error-msg">{error}</p>}
 
-      {/* Recipe cards */}
-      <div className="recipe-grid">
+      {/* Recettes */}
+      <section className="recipe-grid">
         {filteredRecipes.map((recipe) => (
-          <div className="recipe-card" key={recipe._id}>
+          <article className="recipe-card" key={recipe._id}>
             {recipe.image ? (
               <img
                 src={
@@ -115,16 +115,16 @@ function Home() {
               </div>
             )}
             <div className="card-content">
-              <p className="recipe-title">{recipe.title}</p>
+              <h2 className="recipe-title">{recipe.title}</h2>
               <p className="prep-time">Préparation : {recipe.duration} min</p>
               <Link to={`/recipes/${recipe._id}`} className="see-recipe">
                 Voir la recette →
               </Link>
             </div>
-          </div>
+          </article>
         ))}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 

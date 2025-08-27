@@ -23,9 +23,17 @@ export default function AddRecipe() {
   };
 
   return (
-    <div className="add-recipe-page">
-      <h2>🫐 Nouvelle recette</h2>
-      <RecipeForm onSubmit={handleSubmit} isSubmitting={isSubmitting} categories={categories} />
-    </div>
+    <main className="add-recipe-page">
+      <header>
+        <h2>🫐 Nouvelle recette</h2>
+      </header>
+      <section>
+        <RecipeForm
+          onSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
+          categories={categories}
+        />
+      </section>
+    </main>
   );
 }

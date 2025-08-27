@@ -82,39 +82,43 @@ function ShoppingList() {
   };
 
   return (
-    <div className="shopping-page">
-      <div className="notepad">
-        <h2>🛒 Liste de courses</h2>
+    <main className="shopping-page">
+      <section className="notepad">
+        <header>
+          <h2>🛒 Liste de courses</h2>
+        </header>
 
-        {/* Ingredient list */}
-        {ingredients.length === 0 ? (
-          <p>Pas d'indrédient trouvé</p>
-        ) : (
-          <ul className="ingredient-list">
-            {ingredients.map((item) => (
-              <li key={item._id} className={item.checked ? "checked" : ""}>
-                <button
-                  className="delete-btn"
-                  onClick={() => deleteIngredient(item._id)}
-                >
-                  🗑
-                </button>
-                <input
-                  type="checkbox"
-                  checked={item.checked}
-                  onChange={() => toggleCheck(item._id)}
-                />
-                <span>
-                  {item.name} {item.quantity && `- ${item.quantity}`}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
+        <section>
+          {ingredients.length === 0 ? (
+            <p>Pas d’ingrédient trouvé</p>
+          ) : (
+            <ul className="ingredient-list">
+              {ingredients.map((item) => (
+                <li key={item._id} className={item.checked ? "checked" : ""}>
+                  <button
+                    className="delete-btn"
+                    onClick={() => deleteIngredient(item._id)}
+                  >
+                    🗑
+                  </button>
+                  <input
+                    type="checkbox"
+                    checked={item.checked}
+                    onChange={() => toggleCheck(item._id)}
+                  />
+                  <span>
+                    {item.name} {item.quantity && `- ${item.quantity}`}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
 
-        {/* Add ingredient form */}
-        <div className="actions">
+        <section className="actions">
+          <label htmlFor="ingredientName" className="sr-only">Nouvel ingrédient</label>
           <input
+            id="ingredientName"
             type="text"
             placeholder="Nouvel ingrédient"
             value={newIngredient.name}
@@ -122,7 +126,10 @@ function ShoppingList() {
               setNewIngredient({ ...newIngredient, name: e.target.value })
             }
           />
+
+          <label htmlFor="ingredientQty" className="sr-only">Quantité</label>
           <input
+            id="ingredientQty"
             type="text"
             placeholder="Quantité"
             value={newIngredient.quantity}
@@ -130,12 +137,13 @@ function ShoppingList() {
               setNewIngredient({ ...newIngredient, quantity: e.target.value })
             }
           />
+
           <button className="add-btn" onClick={addIngredient}>
             ➕ Ajouter
           </button>
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </main>
   );
 }
 

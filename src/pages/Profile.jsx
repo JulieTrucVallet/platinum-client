@@ -95,19 +95,21 @@ function Profile() {
   if (!profile) return <p>Loading...</p>;
 
   return (
-    <div className="profile-page">
-      <h2 className="profile-title">🍃 Mon Profil</h2>
+    <main className="profile-page">
+      <header>
+        <h2 className="profile-title">🍃 Mon Profil</h2>
+      </header>
 
-      <div className="profile-card">
+      <article className="profile-card">
         {/* Profile image preview */}
-        <div className="profile-picture">
+        <section className="profile-picture">
           <label htmlFor="profileImageInput" className="profile-avatar">
             {preview ? (
-              <img src={preview} alt="Preview" />
+              <img src={preview} alt="Aperçu du profil" />
             ) : profile.image ? (
               <img
                 src={`${import.meta.env.VITE_UPLOADS_URL}${profile.image}`}
-                alt="Profile"
+                alt="Image de profil"
               />
             ) : (
               <div className="avatar-placeholder">
@@ -127,51 +129,60 @@ function Profile() {
               setPreview(file ? URL.createObjectURL(file) : null);
             }}
           />
-        </div>
+        </section>
 
         {/* Profile form */}
-        <form className="profile-form" onSubmit={handleUpdate}>
-          <div className="form-group">
-            <label>Nom:</label>
-            <input type="text" value={profile.username} disabled />
-          </div>
-          <div className="form-group">
-            <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Mot de passe:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Leave empty to keep the same"
-            />
-          </div>
-          <button type="submit" className="btn-submit">
-            Mettre à jour
-          </button>
-        </form>
+        <section>
+          <form className="profile-form" onSubmit={handleUpdate}>
+            <div className="form-group">
+              <label htmlFor="username">Nom :</label>
+              <input
+                type="text"
+                id="username"
+                value={profile.username}
+                disabled
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email :</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Mot de passe :</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Laissez vide pour conserver le même"
+              />
+            </div>
+            <button type="submit" className="btn-submit">
+              Mettre à jour
+            </button>
+          </form>
+        </section>
 
         {/* Stats */}
-        <div className="profile-stats">
+        <section className="profile-stats">
           <p>
-            📌 Recettes créées: <strong>{profile.recipeCount}</strong>
+            📌 Recettes créées : <strong>{profile.recipeCount}</strong>
           </p>
           <p>
-            ⭐ Favoris: <strong>{profile.favoriteCount}</strong>
+            ⭐ Favoris : <strong>{profile.favoriteCount}</strong>
           </p>
-        </div>
+        </section>
 
         {/* Messages */}
         {message && <p className="message">{message}</p>}
         {error && <p className="error">{error}</p>}
-      </div>
-    </div>
+      </article>
+    </main>
   );
 }
 

@@ -17,9 +17,14 @@ export default function AdminAddRecipe() {
   };
 
   return (
-    <div>
-      <h2>Ajouter une recette</h2>
-      <RecipeForm onSubmit={handleSubmit} />
-    </div>
+    <main className="admin-add-recipe-page">
+      <header>
+        <h2>➕ Ajouter une recette</h2>
+      </header>
+
+      <section>
+        <RecipeForm onSubmit={handleSubmit} />
+      </section>
+    </main>
   );
 }

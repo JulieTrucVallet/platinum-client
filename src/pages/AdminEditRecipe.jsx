@@ -42,9 +42,14 @@ export default function AdminEditRecipe() {
   if (loading) return <p>Chargement...</p>;
 
   return (
-    <div>
-      <h2>Modifier une recette</h2>
-      <RecipeForm onSubmit={handleSubmit} initialData={initialData} />
-    </div>
+    <main className="edit-recipe-page">
+      <header>
+        <h2>✏️ Modifier une recette</h2>
+      </header>
+
+      <section>
+        <RecipeForm onSubmit={handleSubmit} initialData={initialData} />
+      </section>
+    </main>
   );
 }

@@ -32,57 +32,61 @@ function Login() {
   };
 
   return (
-    <div className="login-page">
-      <img src={logo} alt="Logo Platinum" className="logo" />
+    <main className="login-page">
+      <header>
+        <img src={logo} alt="Logo Platinum" className="logo" />
+      </header>
 
-      <form className="login-form" onSubmit={handleSubmit}>
-        {/* Email field */}
-        <div className="input-group">
-          <label htmlFor="email">
-            <i className="fa fa-envelope" />
-          </label>
-          <input
-            name="email"
-            type="email"
-            id="email"
-            placeholder="prenom.nom@mail.com"
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <section>
+        <form className="login-form" onSubmit={handleSubmit}>
+          {/* Email field */}
+          <div className="input-group">
+            <label htmlFor="email">
+              <i className="fa fa-envelope" /> Adresse email
+            </label>
+            <input
+              name="email"
+              type="email"
+              id="email"
+              placeholder="prenom.nom@mail.com"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        {/* Password field */}
-        <div className="input-group">
-          <label htmlFor="password">
-            <i className="fa fa-lock" />
-          </label>
-          <input
-            name="password"
-            type="password"
-            id="password"
-            placeholder="••••••••"
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Password field */}
+          <div className="input-group">
+            <label htmlFor="password">
+              <i className="fa fa-lock" /> Mot de passe
+            </label>
+            <input
+              name="password"
+              type="password"
+              id="password"
+              placeholder="••••••••"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        {/* Forgot password (static for now) */}
-        <p className="forgot">Mot de passe oublié ?</p>
+          {/* Forgot password */}
+          <p className="forgot">Mot de passe oublié ?</p>
 
-        {/* Submit button */}
-        <button type="submit" className="login-btn">
-          SE CONNECTER
-        </button>
+          {/* Submit button */}
+          <button type="submit" className="login-btn">
+            SE CONNECTER
+          </button>
 
-        {/* Display message */}
-        {message && <p className="message">{message}</p>}
+          {/* Display message */}
+          {message && <p className="message">{message}</p>}
 
-        {/* Link to register */}
-        <p className="signup">
-          Pas encore de compte ? <Link to="/register">S’INSCRIRE</Link>
-        </p>
-      </form>
-    </div>
+          {/* Link to register */}
+          <p className="signup">
+            Pas encore de compte ? <Link to="/register">S’INSCRIRE</Link>
+          </p>
+        </form>
+      </section>
+    </main>
   );
 }
 

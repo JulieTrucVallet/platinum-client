@@ -28,15 +28,19 @@ export default function EditRecipe() {
   if (!initialValues) return <p>Chargement...</p>;
 
   return (
-    <div className="edit-recipe-page">
-      <h2>✏️ Modifier la recette</h2>
-      <RecipeForm
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        isSubmitting={isSubmitting}
-        submitLabel="Mettre à jour"
-        categories={categories}
-      />
-    </div>
+    <main className="edit-recipe-page">
+      <header>
+        <h2>✏️ Modifier la recette</h2>
+      </header>
+      <section>
+        <RecipeForm
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
+          submitLabel="Mettre à jour"
+          categories={categories}
+        />
+      </section>
+    </main>
   );
 }

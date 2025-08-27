@@ -135,11 +135,13 @@ function RecipeDetails() {
   if (!recipe) return <p>Loading...</p>;
 
   return (
-    <div className="recipe-page-wrapper">
-      <div className="recipe-details-grid">
-        {/* Left side */}
-        <div className="left-section">
-          <h2>{recipe.title}</h2>
+    <main className="recipe-page-wrapper">
+      <article className="recipe-details-grid">
+        {/* Partie gauche */}
+        <section className="left-section">
+          <header>
+            <h2>{recipe.title}</h2>
+          </header>
 
           {/* Image */}
           {recipe.image && (
@@ -154,38 +156,43 @@ function RecipeDetails() {
             />
           )}
 
-          <p>
-            <strong>⏱️ Time:</strong> {recipe.duration} min
-          </p>
-          <p>
-            <strong>Author:</strong> {recipe.user?.username}
-          </p>
+          {/* Infos principales */}
+          <div className="infos">
+            <p>
+              <strong>⏱️ Temps :</strong> {recipe.duration} min
+            </p>
+            <p>
+              <strong>Auteur :</strong> {recipe.user?.username}
+            </p>
+          </div>
 
-          {/* Ingredients */}
-          <h4>🧾 Ingredients</h4>
-          <ul>
-            {recipe.ingredients.map((ing, i) => (
-              <li key={i}>
-                {ing?.name} {ing?.quantity && `(${ing.quantity})`}
-                <button onClick={() => handleAddToList(ing.name, ing.quantity)}>
-                  ➕ Ajouter à la liste de courses
-                </button>
-              </li>
-            ))}
-          </ul>
+          {/* Ingrédients */}
+          <section className="ingredients">
+            <h3>🧾 Ingrédients</h3>
+            <ul>
+              {recipe.ingredients.map((ing, i) => (
+                <li key={i}>
+                  {ing?.name} {ing?.quantity && `(${ing.quantity})`}
+                  <button onClick={() => handleAddToList(ing.name, ing.quantity)}>
+                    ➕ Ajouter à la liste de courses
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-          {/* Steps */}
-          <h4>📋 Steps</h4>
-          <div className="steps">
+          {/* Étapes */}
+          <section className="steps">
+            <h3>📋 Étapes</h3>
             {recipe.steps.map((step, i) => (
               <p key={i}>{step}</p>
             ))}
-          </div>
+          </section>
 
           {/* Actions */}
-          <div className="actions">
+          <footer className="actions">
             <button onClick={handleToggleFavorite}>
-              {isFavorite ? "💔 Supprimer des Favoris" : "❤️ Ajouter au Favoris"}
+              {isFavorite ? "💔 Supprimer des Favoris" : "❤️ Ajouter aux Favoris"}
             </button>
 
             {recipe.user?._id === userId && (
@@ -196,14 +203,14 @@ function RecipeDetails() {
                 <button onClick={handleDelete}>🗑️ Supprimer</button>
               </>
             )}
-          </div>
-        </div>
+          </footer>
+        </section>
 
-        {/* Right side */}
-        <div className="right-section">
-          {/* Video or link */}
-          <div className="video-section">
-            <h4>Lien</h4>
+        {/* Partie droite */}
+        <aside className="right-section">
+          {/* Vidéo ou lien */}
+          <section className="video-section">
+            <h3>🔗 Lien</h3>
             {recipe.link ? (
               recipe.link.includes("youtube") ? (
                 <iframe
@@ -219,17 +226,17 @@ function RecipeDetails() {
                 </a>
               )
             ) : (
-              <p>Pas de liens</p>
+              <p>Pas de lien</p>
             )}
-          </div>
+          </section>
 
-          {/* Comments */}
-          <div className="comment-section" style={{ marginTop: "2rem" }}>
-            <h4>💬 Commentaires</h4>
+          {/* Commentaires */}
+          <section className="comment-section">
+            <h3>💬 Commentaires</h3>
 
-            {/* Add comment */}
+            {/* Formulaire commentaire */}
             {token && (
-              <div style={{ marginBottom: "1rem" }}>
+              <form style={{ marginBottom: "1rem" }}>
                 <textarea
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
@@ -238,20 +245,21 @@ function RecipeDetails() {
                   style={{ width: "100%", padding: "0.5rem" }}
                 />
                 <button
+                  type="button"
                   onClick={handleAddComment}
                   style={{ marginTop: "0.5rem" }}
                 >
                   Poster
                 </button>
-              </div>
+              </form>
             )}
 
-            {/* Show comments */}
+            {/* Liste des commentaires */}
             {comments.length === 0 ? (
-              <p>Pas encore de Commentaires</p>
+              <p>Pas encore de commentaires</p>
             ) : (
               comments.map((c) => (
-                <div
+                <article
                   key={c._id}
                   style={{
                     marginBottom: "1rem",
@@ -259,7 +267,7 @@ function RecipeDetails() {
                     paddingBottom: "0.5rem",
                   }}
                 >
-                  <strong>{c.user?.username || "User"}</strong>
+                  <strong>{c.user?.username || "Utilisateur"}</strong>
                   <span
                     style={{
                       marginLeft: "0.5rem",
@@ -270,13 +278,13 @@ function RecipeDetails() {
                     {dayjs(c.createdAt).fromNow()}
                   </span>
                   <p>{c.content}</p>
-                </div>
+                </article>
               ))
             )}
-          </div>
-        </div>
-      </div>
-    </div>
+          </section>
+        </aside>
+      </article>
+    </main>
   );
 }
 

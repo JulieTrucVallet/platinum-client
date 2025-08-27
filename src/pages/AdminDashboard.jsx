@@ -34,50 +34,54 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="admin-dashboard">
-      <h1>Interface Admin – Recettes</h1>
+    <main className="admin-dashboard">
+      <header>
+        <h1>Interface Admin – Recettes</h1>
+        <button onClick={() => navigate("/admin/add-recipe")}>
+          ➕ Ajouter une recette
+        </button>
+      </header>
 
-      <button onClick={() => navigate("/admin/add-recipe")}>
-        Ajouter une recette
-      </button>
-
-      {loading ? (
-        <p>Chargement...</p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Titre</th>
-              <th>Ingrédients</th>
-              <th>Durée</th>
-              <th>Difficulté</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recipes.map((recipe) => (
-              <tr key={recipe._id}>
-                <td>{recipe.title}</td>
-                <td>
-                  {recipe.ingredients.map((ing, i) => (
-                    <div key={i}>
-                      {ing.name} – {ing.quantity}
-                    </div>
-                  ))}
-                </td>
-                <td>{recipe.duration} min</td>
-                <td>{recipe.difficulty}</td>
-                <td>
-                  <button onClick={() => navigate(`/admin/edit-recipe/${recipe._id}`)}>
-                    ✏️
-                  </button>
-                  <button onClick={() => handleDelete(recipe._id)}>🗑️</button>
-                </td>
+      <section>
+        {loading ? (
+          <p>Chargement...</p>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Titre</th>
+                <th>Ingrédients</th>
+                <th>Durée</th>
+                <th>Difficulté</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
+            </thead>
+            <tbody>
+              {recipes.map((recipe) => (
+                <tr key={recipe._id}>
+                  <td>{recipe.title}</td>
+                  <td>
+                    {recipe.ingredients.map((ing, i) => (
+                      <span key={i}>
+                        {ing.name} – {ing.quantity}
+                        <br />
+                      </span>
+                    ))}
+                  </td>
+                  <td>{recipe.duration} min</td>
+                  <td>{recipe.difficulty}</td>
+                  <td>
+                    <button onClick={() => navigate(`/admin/edit-recipe/${recipe._id}`)}>
+                      ✏️
+                    </button>
+                    <button onClick={() => handleDelete(recipe._id)}>🗑️</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </section>
+    </main>
   );
 }

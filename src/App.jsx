@@ -36,87 +36,89 @@ function App() {
   return (
     <>
       {!hideNavRoutes.includes(location.pathname) && <NavBar />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route
-          path="/add-recipe"
-          element={
-            <PrivateRoute>
-              <AddRecipe />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/recipes/:id" element={<RecipeDetails />} />
-        <Route
-          path="/favorites"
-          element={
-            <PrivateRoute>
-              <Favorites />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/recipes/:id/edit"
-          element={
-            <PrivateRoute>
-              <EditRecipe />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/courses"
-          element={
-            <PrivateRoute>
-              <ShoppingList />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/courses/:id"
-          element={
-            <PrivateRoute>
-              <ShoppingList />
-            </PrivateRoute>
-          }
-        />
+          <Route
+            path="/add-recipe"
+            element={
+              <PrivateRoute>
+                <AddRecipe />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/recipes/:id" element={<RecipeDetails />} />
+          <Route
+            path="/favorites"
+            element={
+              <PrivateRoute>
+                <Favorites />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/recipes/:id/edit"
+            element={
+              <PrivateRoute>
+                <EditRecipe />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/courses"
+            element={
+              <PrivateRoute>
+                <ShoppingList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/courses/:id"
+            element={
+              <PrivateRoute>
+                <ShoppingList />
+              </PrivateRoute>
+            }
+          />
 
-        {/* Admin */}
-        <Route
-          path="/admin"
-          element={
-            <PrivateRoute>
-              <AdminDashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/admin/add-recipe"
-          element={
-            <PrivateRoute>
-              <AdminAddRecipe />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/admin/edit-recipe/:id"
-          element={
-            <PrivateRoute>
-              <AdminEditRecipe />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+          {/* Admin */}
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute>
+                <AdminDashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/add-recipe"
+            element={
+              <PrivateRoute>
+                <AdminAddRecipe />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/edit-recipe/:id"
+            element={
+              <PrivateRoute>
+                <AdminEditRecipe />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </main>
     </>
   );
 }
