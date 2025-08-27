@@ -93,7 +93,7 @@
         }
 
         button {
-          background: $color-danger;
+          background: $color-error;
           border: none;
           color: white;
           border-radius: $radius-sm;
@@ -101,7 +101,7 @@
           cursor: pointer;
 
           &:hover {
-            background: darken($color-danger, 10%);
+            background: darken($color-error, 10%);
           }
         }
       }
