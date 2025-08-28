@@ -20,7 +20,6 @@
     height: 70px;
   }
 
-  /* liens (desktop par défaut) */
   .navbar-links {
     display: flex;
     list-style: none;
@@ -63,7 +62,6 @@
     }
   }
 
-  /* bloc de droite (desktop only) */
   .navbar-right {
     display: flex;
     align-items: center;
@@ -92,7 +90,6 @@
     color: $color-text-light;
   }
 
-  /* burger */
   .burger {
     display: none;
     flex-direction: column;
@@ -109,24 +106,19 @@
     &.open .bar:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
+
     &.open .bar:nth-child(2) {
       opacity: 0;
     }
+
     &.open .bar:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
   }
 
-  /* utilitaires */
-  .mobile-only { display: none; }
-  .desktop-only { display: flex; }
-
-  // 📱 Mobile
+  // Mobile
   @media (max-width: 600px) {
     flex-wrap: wrap;
-
-    .mobile-only { display: block; }
-    .desktop-only { display: none !important; }
 
     .navbar-links {
       display: none;

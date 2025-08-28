@@ -17,75 +17,91 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Logo */}
+      {/* Logo à gauche */}
       <div className="navbar-left">
         <Link to="/">
           <img src={logo} alt="Logo Platinum" className="logo-navbar" />
         </Link>
       </div>
 
-      {/* Burger */}
-      <button
-        className="burger"
-        aria-label="Ouvrir le menu"
-        aria-expanded={menuOpen}
-        aria-controls="navbar-links"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        <div className={`bar ${menuOpen ? "open" : ""}`} />
-        <div className={`bar ${menuOpen ? "open" : ""}`} />
-        <div className={`bar ${menuOpen ? "open" : ""}`} />
-      </button>
+      {/* Icône burger */}
+      <div className="burger" onClick={() => setMenuOpen(!menuOpen)}>
+        <div className={`bar ${menuOpen ? "open" : ""}`}></div>
+        <div className={`bar ${menuOpen ? "open" : ""}`}></div>
+        <div className={`bar ${menuOpen ? "open" : ""}`}></div>
+      </div>
 
-      {/* Liens (affichés dans le burger en mobile) */}
-      <ul id="navbar-links" className={`navbar-links ${menuOpen ? "active" : ""}`}>
+      {/* Liens menu (MOBILE uniquement) */}
+      <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
         <li>
-          <Link to="/" onClick={() => setMenuOpen(false)}>Accueil</Link>
+          <Link to="/" onClick={() => setMenuOpen(false)}>
+            Accueil
+          </Link>
         </li>
 
         {user ? (
           <>
             <li>
-              <Link to="/add-recipe" onClick={() => setMenuOpen(false)}>Ajouter une recette</Link>
+              <Link to="/add-recipe" onClick={() => setMenuOpen(false)}>
+                Ajouter une recette
+              </Link>
             </li>
             <li>
-              <Link to="/favorites" onClick={() => setMenuOpen(false)}>Favoris</Link>
+              <Link to="/favorites" onClick={() => setMenuOpen(false)}>
+                Favoris
+              </Link>
             </li>
             <li>
-              <Link to="/courses" onClick={() => setMenuOpen(false)}>Liste de courses</Link>
+              <Link to="/courses" onClick={() => setMenuOpen(false)}>
+                Liste de courses
+              </Link>
             </li>
             <li>
-              <Link to="/profile" onClick={() => setMenuOpen(false)}>Profil</Link>
+              <Link to="/profile" onClick={() => setMenuOpen(false)}>
+                Profil
+              </Link>
             </li>
-            {/* 🔸 Déconnexion visible UNIQUEMENT en mobile */}
-            <li className="mobile-only">
-              <button onClick={handleLogout} className="btn-logout">Déconnexion</button>
+            {/* ✅ Déconnexion affichée seulement en mobile */}
+            <li>
+              <button onClick={handleLogout} className="btn-logout">
+                Déconnexion
+              </button>
             </li>
           </>
         ) : (
           <>
-            {/* 🔸 Connexion / Inscription visibles UNIQUEMENT en mobile */}
-            <li className="mobile-only">
-              <Link to="/login" onClick={() => setMenuOpen(false)}>Connexion</Link>
+            {/* ✅ Connexion / Inscription affichées seulement en mobile */}
+            <li>
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                Connexion
+              </Link>
             </li>
-            <li className="mobile-only">
-              <Link to="/register" onClick={() => setMenuOpen(false)}>Inscription</Link>
+            <li>
+              <Link to="/register" onClick={() => setMenuOpen(false)}>
+                Inscription
+              </Link>
             </li>
           </>
         )}
       </ul>
 
-      {/* Boutons verts (DESKTOP seulement) */}
-      <div className="navbar-right desktop-only">
+      {/* Côté droit (DESKTOP uniquement) */}
+      <div className="navbar-right">
         {user ? (
           <>
             <span className="welcome-text">Bienvenue {user.username}</span>
-            <button onClick={handleLogout} className="btn-logout">Déconnexion</button>
+            <button onClick={handleLogout} className="btn-logout">
+              Déconnexion
+            </button>
           </>
         ) : (
           <>
-            <Link to="/login" className="btn-login">Connexion</Link>
-            <Link to="/register" className="btn-login">Inscription</Link>
+            <Link to="/login" className="btn-login">
+              Connexion
+            </Link>
+            <Link to="/register" className="btn-login">
+              Inscription
+            </Link>
           </>
         )}
       </div>
