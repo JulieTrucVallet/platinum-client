@@ -1,13 +1,11 @@
 @import "./variables.scss";
 
-// fond blanc + pas de décor body
 body.register-page {
   background-color: $color-bg;
 
   &::after { display: none; }
 }
 
-/* utilité accessibilité (même que sur Login) */
 .sr-only {
   position: absolute !important;
   width: 1px; height: 1px;
@@ -34,7 +32,6 @@ body.register-page {
     width: 380px;
     gap: $space-lg;
 
-    // groupe icône + input (identique à Login)
     .input-group {
       display: flex;
       align-items: center;
@@ -61,7 +58,6 @@ body.register-page {
       }
     }
 
-    // bouton (mêmes tailles que Login)
     .register-btn {
       background-color: $color-accent;
       color: $color-text;
@@ -90,7 +86,7 @@ body.register-page {
   }
 }
 
-// Responsive
+// Mobile
 @media (max-width: 600px) {
   .login-page,
   .register-page {

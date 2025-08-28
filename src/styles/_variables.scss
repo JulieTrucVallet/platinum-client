@@ -1,4 +1,4 @@
-// 🎨 Couleurs globales
+// Couleurs
 $color-primary: #779144;   // bleu principal (boutons, liens)
 $color-accent: #ffc107;    // accent (hover, highlights)
 $color-bg: #ffffff;        // fond clair principal
@@ -9,29 +9,29 @@ $color-border: #ddd;       // bordures légères
 $color-error: #e74c3c;     // erreurs
 $color-success: #2ecc71;   // succès
 
-// 🔠 Typographie
+// Typographie
 $font-main: "Arial", sans-serif;
 $font-size-base: 16px;
 $font-size-title: 24px;
 $font-size-small: 14px;
 
-// 📏 Espacements
+// Espacements
 $space-xs: 4px;
 $space-sm: 10px;
 $space-md: 16px;
 $space-lg: 24px;
 $space-xl: 40px;
 
-// 🔳 Formes
+// Formes
 $radius-sm: 4px;
 $radius-md: 8px;
 $radius-lg: 12px;
 
-// 🖼️ Ombres
+// Ombres
 $shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
 $shadow-md: 0 3px 6px rgba(0, 0, 0, 0.15);
 
-// 🟦 Composants de base
+// Composants de base
 .btn {
   border-radius: $radius-md;
   padding: $space-sm $space-md;

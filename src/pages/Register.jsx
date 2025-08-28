@@ -33,7 +33,7 @@ export default function Register() {
         <h1 id="register-title" className="sr-only">Créer un compte</h1>
 
         <form className="register-form" onSubmit={handleSubmit}>
-          {/* Nom */}
+          {/* Name */}
           <div className="input-group">
             <label htmlFor="username" className="sr-only">Nom</label>
             <span className="icon" aria-hidden="true"><FaUser /></span>
@@ -63,7 +63,7 @@ export default function Register() {
             />
           </div>
 
-          {/* Mot de passe */}
+          {/* Password */}
           <div className="input-group">
             <label htmlFor="password" className="sr-only">Mot de passe</label>
             <span className="icon" aria-hidden="true"><FaLock /></span>

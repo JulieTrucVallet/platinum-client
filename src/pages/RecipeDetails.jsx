@@ -1,4 +1,3 @@
-// Import libraries and hooks
 import axios from "axios";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -137,13 +136,11 @@ function RecipeDetails() {
   return (
     <main className="recipe-page-wrapper">
       <article className="recipe-details-grid">
-        {/* Partie gauche */}
         <section className="left-section">
           <header>
             <h2>{recipe.title}</h2>
           </header>
 
-          {/* Image */}
           {recipe.image && (
             <img
               src={
@@ -157,7 +154,6 @@ function RecipeDetails() {
             />
           )}
 
-          {/* Infos principales */}
           <div className="infos">
             <p>
               <strong>⏱️ Temps :</strong> {recipe.duration} min
@@ -167,7 +163,6 @@ function RecipeDetails() {
             </p>
           </div>
 
-          {/* Ingrédients */}
           <section className="ingredients">
             <h3>🧾 Ingrédients</h3>
             <ul>
@@ -185,7 +180,6 @@ function RecipeDetails() {
             </ul>
           </section>
 
-          {/* Étapes */}
           <section className="steps">
             <h3>📋 Étapes</h3>
             {recipe.steps.map((step, i) => (
@@ -193,7 +187,6 @@ function RecipeDetails() {
             ))}
           </section>
 
-          {/* Actions */}
           <footer className="actions">
             <button onClick={handleToggleFavorite}>
               {isFavorite ? "💔 Supprimer des Favoris" : "❤️ Ajouter aux Favoris"}
@@ -215,9 +208,7 @@ function RecipeDetails() {
           </footer>
         </section>
 
-        {/* Partie droite */}
         <aside className="right-section">
-          {/* Vidéo ou lien */}
           <section className="video-section">
             <h3>🔗 Lien</h3>
             {recipe.link ? (
@@ -245,11 +236,9 @@ function RecipeDetails() {
             )}
           </section>
 
-          {/* Commentaires */}
           <section className="comment-section">
             <h3>💬 Commentaires</h3>
 
-            {/* Formulaire commentaire */}
             {token && (
               <form style={{ marginBottom: "1rem" }}>
                 <label htmlFor="commentTextarea" className="sr-only">
@@ -273,7 +262,6 @@ function RecipeDetails() {
               </form>
             )}
 
-            {/* Liste des commentaires */}
             {comments.length === 0 ? (
               <p>Pas encore de commentaires</p>
             ) : (

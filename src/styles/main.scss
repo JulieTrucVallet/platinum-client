@@ -61,12 +61,12 @@ nav {
 
       &:hover {
         text-decoration: underline;
-        color: $color-primary; // petit accent au hover
+        color: $color-primary;
       }
     }
   }
 
-  // Responsive (burger menu style)
+  // Mobile
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: flex-start;

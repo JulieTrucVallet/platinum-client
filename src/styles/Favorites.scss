@@ -92,17 +92,10 @@
     }
   }
 
-  // Responsive: 2 columns on tablets
+  // Mobile
   @media (min-width: 600px) {
     .recipe-grid {
       grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  // Responsive: 3 columns on larger screens
-  @media (min-width: 900px) {
-    .recipe-grid {
-      grid-template-columns: repeat(3, 1fr);
     }
   }
 }

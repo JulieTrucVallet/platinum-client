@@ -47,7 +47,7 @@ function Favorites() {
                   <img
                     src={`${import.meta.env.VITE_UPLOADS_URL}${r.image}`}
                     alt={r.title}
-                    loading="lazy"   // ✅ lazy loading ajouté
+                    loading="lazy"
                   />
                 ) : (
                   <div className="no-image">

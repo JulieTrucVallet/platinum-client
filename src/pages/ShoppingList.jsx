@@ -1,4 +1,3 @@
-// Import libraries and hooks
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_URL } from "../config";

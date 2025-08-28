@@ -8,10 +8,12 @@ export default function AddRecipe() {
   const [isSubmitting, setSubmitting] = useState(false);
   const [categories, setCategories] = useState([]);
 
+  // Load categories when page mounts
   useEffect(() => {
     getCategories().then(setCategories).catch(() => setCategories([]));
   }, []);
 
+  // Handle form submit
   const handleSubmit = async (formData) => {
     try {
       setSubmitting(true);

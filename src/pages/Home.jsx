@@ -21,7 +21,6 @@ export default function Home() {
       .catch(() => setError("Erreur lors du chargement des recettes"));
   }, []);
 
-  // 🔎 Filtrage
   useEffect(() => {
     let filtered = recipes;
 
@@ -57,13 +56,11 @@ export default function Home() {
 
   return (
     <main className="home-page">
-      {/* 🔝 En-tête */}
       <header className="home-header">
         <div className="home-title">
           <img src={logo} alt="Logo Platinum" className="home-logo" />
         </div>
 
-        {/* 🔎 Zone filtres */}
         <section className="sticky-filters" aria-label="Filtres de recherche">
           <label htmlFor="searchInput" className="sr-only">
             Recherche par titre
@@ -93,7 +90,6 @@ export default function Home() {
             </button>
           </div>
 
-          {/* 🏷️ Tags ingrédients */}
           <div className="ingredient-tags">
             {ingredients.map((ing, idx) => (
               <span key={idx} className="tag">
@@ -105,14 +101,12 @@ export default function Home() {
         </section>
       </header>
 
-      {/* 🚨 Message erreur */}
       {error && (
         <p className="error-msg" role="alert" aria-live="polite">
           {error}
         </p>
       )}
 
-      {/* 📋 Recettes */}
       <section className="recipe-grid">
         {filteredRecipes.map((recipe) => (
           <article className="recipe-card" key={recipe._id}>

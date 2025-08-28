@@ -3,7 +3,7 @@ import { API_URL } from "../config";
 
 export async function login(email, password) {
   const res = await axios.post(`${API_URL}/auth/login`, { email, password });
-  return res.data; // { token, user }
+  return res.data;
 }
 
 export async function register(formData) {
