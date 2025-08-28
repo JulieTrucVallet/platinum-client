@@ -27,7 +27,7 @@ export default function AddRecipe() {
   return (
     <main className="add-recipe-page">
       <header>
-        <h1 id="addRecipeTitle">🫐 Nouvelle recette</h1>
+        <h1 id="addRecipeTitle">Nouvelle recette</h1>
       </header>
 
       <section aria-labelledby="addRecipeTitle">

@@ -138,7 +138,7 @@ function ShoppingList() {
           />
 
           <button className="add-btn" onClick={addIngredient}>
-            ➕ Ajouter
+            Ajouter
           </button>
         </section>
       </section>

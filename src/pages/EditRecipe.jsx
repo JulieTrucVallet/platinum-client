@@ -33,7 +33,7 @@ export default function EditRecipe() {
   return (
     <main className="edit-recipe-page">
       <header>
-        <h2>✏️ Modifier la recette</h2>
+        <h2>Modifier la recette</h2>
       </header>
       <section>
         <RecipeForm
